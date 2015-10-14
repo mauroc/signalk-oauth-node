@@ -1,0 +1,46 @@
+{
+    "vessel": {
+        "name"	: "sQuiddio",
+        "brand"	: "Jeannneau",
+        "type"	: "40",
+        "uuid"	: "10101010",
+
+        "dimensions": {
+            "length": 7,
+            "width": 2.5,
+            "mast": 10,
+            "depthTransducer": 0.5,
+            "keel": 1.5
+        }
+    },
+
+    "interfaces": {},
+
+    "pipedProviders": [{
+        "id": "aisFromFile",
+        "pipeElements": [
+            {
+                "type": "providers/execute",
+                "options": {
+                    "command": "tail -f /root/bbxais/ais.log"
+                }
+            },
+            {
+                "type": "providers/liner"
+            },
+            {
+                "type": "providers/nmea0183-signalk",
+                "optionMappings": [
+                    {
+                        "fromAppProperty": "selfId",
+                        "toOption": "selfId"
+                    },
+                    {
+                        "fromAppProperty": "selfType",
+                        "toOption": "selfType"
+                    }
+                ]
+            }
+        ]
+    }]
+}
