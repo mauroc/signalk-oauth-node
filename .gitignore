@@ -4,3 +4,4 @@ node_modules
 logs/*
 bower_components
 .idea/
+/providers/npm-debug.log
