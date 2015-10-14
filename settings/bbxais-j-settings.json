@@ -1,9 +1,9 @@
 {
     "vessel": {
-        "name"	: "sQuiddio",
+        "name"	: "Adventure Galley",
         "brand"	: "Jeannneau",
-        "type"	: "40",
-        "uuid"	: "10101010",
+        "type"	: "36",
+        "uuid"	: "AF000401",
 
         "dimensions": {
             "length": 12,
@@ -22,7 +22,7 @@
             {
                 "type": "providers/execute",
                 "options": {
-                    "command": "tail -f /root/bbxais/ais_json.log"
+                    "command": "tail -f /root/bbxais/log/ais_json.log"
                 }
             },
             {
@@ -32,3 +32,4 @@
         ]
     }]
 }
+
