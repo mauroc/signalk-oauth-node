@@ -1,8 +1,8 @@
 {
 	"vessel": {
-		"name"	: "Volare",
-		"brand"	: "Friendship",
-		"type"	: "22",
+		"name"	: "sQuiddio",
+		"brand"	: "Jeannneau",
+		"type"	: "40",
 		"uuid"	: "10101010",
 		
 		"dimensions": {
@@ -17,12 +17,12 @@
 	"interfaces": {},
   
   "pipedProviders": [{
-    "id": "nmeaFromFile",
+    "id": "aisFromFile",
     "pipeElements": [
        { 
          "type": "providers/filestream",
          "options": {
-           "filename": "samples/plaka.log"
+           "filename": "samples/ais.log"
          },
          "optionMappings": [
            {
@@ -34,7 +34,7 @@
        { 
          "type": "providers/throttle",
          "options": {
-            "rate": 2500
+            "rate": 500
          }
        },       
        {
