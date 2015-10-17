@@ -3,7 +3,7 @@
         "name"	: "Adventure Galley",
         "brand"	: "Jeannneau",
         "type"	: "36",
-        "uuid"	: "AF000401",
+        "uuid"	: "squiddio:00401",
 
         "dimensions": {
             "length": 12,
