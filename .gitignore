@@ -5,3 +5,5 @@ logs/*
 bower_components
 .idea/
 /providers/npm-debug.log
+nohup.out
+

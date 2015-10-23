@@ -1,7 +1,7 @@
 {
   "name": "signalk-server",
   "version": "0.1.20",
-  "description": "An implementation of a [Signal K](http://signalk.github.io) server for boats.",
+  "description": "An implementation of a [Signal K](http://signalk.github.io) server for boats. Provides Oauth2 authentication ",
   "main": "index.js",
   "scripts": {
     "start": "node ./index",
@@ -26,13 +26,18 @@
     "sailing",
     "boat",
     "marine",
-    "nautic"
+    "nautic",
+    "squiddio"
   ],
   "author": "Fabian Tollenaar <fabian@starting-point.nl>",
   "contributors": [
     {
       "name": "Teppo Kurki",
       "email": "teppo.kurki@iki.fi"
+    },
+    {
+      "name": "Mauro Calvi",
+      "email": "coupdemistral@gmail.com"
     }
   ],
   "license": "Apache-2.0",
@@ -40,7 +45,11 @@
     "node": "v0.10.x"
   },
   "dependencies": {
+    "bcrypt-nodejs": "*",
+    "body-parser": "~1.0.0",
     "colors": "^0.6.2",
+    "connect-flash": "*",
+    "cookie-parser": "~1.0.1",
     "cors": "^2.5.2",
     "debug": "^2.1.0",
     "deep-get-set": "^0.1.1",
@@ -48,16 +57,22 @@
     "errorhandler": "^1.3.0",
     "express": "^4.10.4",
     "express-namespace": "^0.1.1",
+    "express-session": "~1.0.4",
     "flatmap": "0.0.3",
+    "jade": "~1.3.0",
     "lodash": "^2.4.1",
     "minimist": "^1.1.0",
+    "mongoose": "~3.8.12",
     "morgan": "^1.5.0",
     "n2k-signalk": "signalk/n2k-signalk",
     "nmea0183-signalk": "signalk/nmea0183-signalk",
     "node-gpsd": "^0.2.1",
     "node-uuid": "^1.4.3",
+    "passport": "~0.2.0",
+    "passport-squiddio": "^1.0.0",
     "primus": "^2.4.10",
     "signalk-multiplexer": "signalk/signalk-multiplexer-node",
+    "static-favicon": "~1.0.0",
     "stream-throttle": "^0.1.3",
     "through": ">=2.2.7 <3",
     "winston": "^1.0.0",
