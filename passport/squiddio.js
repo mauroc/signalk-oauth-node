@@ -14,9 +14,10 @@ module.exports = function(passport) {
             //callbackURL:    'https://localhost:3000/login/squiddio/callback'
             callbackURL:    'http://localhost:3000/login/squiddio/callback'
         },
-        function(accessToken, refreshToken, profile, done) {
+        function(accessToken, refreshToken, params, profile, done) {
 
-            console.log('profile', profile);
+            console.log('profile: ', profile);
+            console.log('params: ', params);
 
             // asynchronous
             process.nextTick(function() {
@@ -37,11 +38,12 @@ module.exports = function(passport) {
                         var newUser                 = new User();
 
                         // set all of the user data that we need
-                        newUser.squiddio.id         = profile.id;
-                        newUser.squiddio.token      = accessToken;
-                        newUser.squiddio.email      = profile.email;
-                        newUser.squiddio.firstName  = profile.firstName;
-                        newUser.squiddio.lastName   = profile.lastName;
+                        newUser.squiddio.id             = profile.id;
+                        newUser.squiddio.token          = accessToken;
+                        newUser.squiddio.tokenExpires   = Math.floor(new Date().getTime()/1000) + params.expires_in;
+                        newUser.squiddio.email          = profile.email;
+                        newUser.squiddio.firstName      = profile.firstName;
+                        newUser.squiddio.lastName       = profile.lastName;
 
                         // save our user into the database
                         newUser.save(function(err) {
