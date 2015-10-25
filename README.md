@@ -1,66 +1,78 @@
-SignalK Server in Node
+SignalK Server in node with client Oauth Authentication
 ================
 
-An implementation of a [Signal K](http://signalk.org) server for vessels. Intended to run on embedded devices (e.g. Raspberry Pi, Beaglebone or UDOO). 
+An experimental implementation of a [Signal K](http://signalk.org) server using OAuth Authentication through sQuidd.io.
+Allows you to control access to your signalk server without the need to manage user credentials, passwords, certificates etc. locally. It also provides the server with access to a number of squidd.io authenticated APIs for the retrieval and sharing of nautical information (see below).
 
-The Server acts as a multiplexer/aggregator of the SignalK streams input by one or more Providers. The merged SignalK data   is available in streaming format over a WebSocket connection and via a REST interface.
+Kicking the tires with a live SignalK server on sQuidd.io
+------------------
+
+Before you try anything on your SignalK server, you may want to peek at the this implementation of the SignalK server running on squiddio. To do that:
+
+* Obtain a squidd.io account (free) at http://squidd.io/signup if you don't already have one
+
+* go to http://squidd.io:3000/login and sign in
+
+Select one of the few sample queries or view the live streaming page for real-time log updates. (source: AIS reports)
+
+If you have an active follow list on sQuidd.io, you and watch your friend's log reports in real time. (sources: AIS reports, SPot Tracker, or OpenCPN squiddio_pi users and manual reports.)
+
+Watch an authenticated websocket stream using your oauth credentials
+
+`````
+npm install -g wscat
+wscat --connect wss://stream.squidd.io:3000/signalk/v1?user_id=<your_squiddio_user_id>&token
+`````
+Read the [instructions]() on where to find id and token.
 
 
-Get up and running
+Get up and running with your own authenticated SignalK Server
 ------------------
 Prerequisites
+* a squiddio account
+* squiddio [client id and secret] for your server (currently limited to one per vessel)
 * node and npm installed
 
-See [these instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#debian-and-ubuntu-based-linux-distributions) for Node installation on Raspberry Pi.
+See [additional instructions](https://github.com/signalk/signalk-server-node) directly at the official SignalK repo.
 
-Get the repo with either `git clone https://github.com/SignalK/signalk-server-node.git`
-or as a simple zip file from https://github.com/SignalK/signalk-server-node/archive/master.zip and extract it.
+* Get the repo with `git clone https://github.com/mauroc/signalk-squiddio.git`
 
-Go to the directory where you put the downloaded code and install dependencies with 
+* Go to the directory where you put the downloaded code and install dependencies with
 ````
 npm install
 ```
 [Firewall giving you trouble?](https://github.com/npm/npm/wiki/Troubleshooting#npm-only-uses-git-and-sshgit-urls-for-github-repos-breaking-proxies)
 
-Start the server with 
+* edit the db.js file in the root directory, and enter your squiddio client id and secret. Save the file
+
+
+Start the server with
 ```
 bin/nmea-from-file
 ```
 
 This will start the server with a sample configuration file and the server will start playing back set of [NMEA 0183](http://en.wikipedia.org/wiki/NMEA_0183) data from file. The data is available immediately via the REST interface at http://localhost:3000/signalk/api/v1/.
 
-A simple way to connect to the WebSocket interface from the command line is to install wscat and use that:
+
+* Register yourself with the server by siging in through squidd.io
+
+
+View the websocket stream from your CLI
 ```
 npm install -g wscat
 wscat --connect 'ws://localhost:3000/signalk/stream/v1?stream=delta'
 ````
 
-If you want to use [NMEA2000](http://en.wikipedia.org/wiki/NMEA_2000) data you need at least [Canboat analyzer](https://github.com/canboat/canboat/wiki/analyzer) to parse NMEA 2000 data to json and [Canboat actisense-serial](https://github.com/canboat/canboat/wiki/actisense-serial) for getting live data from Actisense [NGT-1](http://www.actisense.com/products/nmea-2000/ngt-1/ngt-1). 
+The skinny on how it works
+----
+This modified version of the SignalK node server uses the Passport Node.js  module (Oauth 2.0) and a the [passport-squiddio]() Oauth strategy module to obtain user credentials and positive identification through squidd.io. To put it a bit more simply, it works similarly to the "log in using Facebook" button you see on so many sites, except that in this case sQuidd.io acts as a Facebook of sorts.  The user's browser or app is granted immediate access to the SignalK server without the need to fill in a form. The server can control access to its information without having to collect and store user info, validate the email address, manage forgotten emails etc. Finally, the user can authorize the SignalK server to retrieve information from squiddio on his/her behalf through a [number of APIs]() (nautical points of interest, real-time position and NMEA reports, vessels nearby etc.).
 
-If you have analyzer available on your PATH you can start the server with a sample NMEA2000 data file with `bin/n2k-from-file`. 
+The user credentials (in the form of a time-limited token. name and email address) are stored in a local Mongodb database (using Mongoose). Completing the initial authentication with squiddio requires Internet connectivity, but the access token obtained as a result of that is (currently) valid for 3 months, allowing subsequent authentication into the server even in absence of connectivity. All requests to standard server urls (e.g. /signalk/api/v1/vessels/34273827/navigation) are blocked unless the user has previously logged in on the server (i.e. has a valid cookie). Similarly, CLI and Javascript client access to the Websocket stream is verified for valid user credentials (user id and token).
 
-For getting live data from your NGT-1 you need to figure out what device path your device is mounted on, edit the configuration file to match you path and start server with `bin/n2k-from-actisense`.
 
-If you have your own n2k data file you can use that with `bin/n2k-from-file --n2kfilename your-file-name`.
 
-Now what? Consumers!
----------------
-
-Once you have the data streams in place you probably want to use the data or at least see it in a nice format. See [Consumers](https://github.com/SignalK/signalk-server-node/blob/master/CONSUMERS.md) for details.
-
-Bonjour support
----------------
-
-Bonjour support is not activated by default, because it requires operating system support that is not present by default on all platforms. You can enable it by installing `mdns` with `npm install mdns` issued in the server's root folder. See also https://github.com/agnat/node_mdns#installation for more information.
-
-Once Bonjour is enabled the server advertises itself via Bonjour. This means that Bonjour-aware software running in the same network can discover the Signal K server and access it. For example the server shows up in Safari at Bookmarks => Bonjour => Webpages.
-
-You can disable Bonjour/mDNS by adding the entry `"mdns": false` to the config file. See `settings/volare-gpsd-settings.json` for example.
-
-Further Reading
----------------
-* http://signalk.org/index.html
-* http://signalk.org/dev/messageFormat.html
+Subscrbe to squiddio streams
+------
 
 
 License
