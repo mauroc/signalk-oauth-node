@@ -6,10 +6,12 @@ html
         title Signal K consumer
         script(src='/signalk/stream/v1/primus.js')
     block content
+        p.
+            user: #{user]
         pre
             div#data
     script.
-        var signalKStream = Primus.connect(window.location.hostname + "/signalk/stream/v1?stream=delta", {
+        var signalKStream = Primus.connect(window.location.hostname + "/signalk/stream/v1?stream=delta&user_id=#{user.squiddio.id}&token=#{user.squiddio.token}", {
             reconnect: {
                 maxDelay: 15000,
                 minDelay: 500,

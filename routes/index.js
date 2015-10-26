@@ -4,22 +4,22 @@ var isAuthenticated = require('../lib/isauth');
 
 module.exports = function(passport){
 
-	/* GET login page. */
-	router.get('/login', function(req, res) {
-    	// Display the Login page with any flash message, if any
-		res.render('index.jade', { message: req.flash('message') });
-	});
+    /* GET login page. */
+    router.get('/login', function(req, res) {
+        // Display the Login page with any flash message, if any
+        res.render('index.jade', { message: req.flash('message') });
+    });
 
-	/* GET Home Page */
-	router.get('/home', isAuthenticated, function(req, res){
-		res.render('home', { user: req.user });
-	});
+    /* GET Home Page */
+    router.get('/home', isAuthenticated, function(req, res){
+        res.render('home', { user: req.user });
+    });
 
-	/* Handle Logout */
-	router.get('/signout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	});
+    /* Handle Logout */
+    router.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
 
     // Redirect the user to the OAuth 2.0 provider for authentication.  When
@@ -37,7 +37,19 @@ module.exports = function(passport){
             successRedirect: '/home',
             failureRedirect: '/' }));
 
-	return router;
+
+
+    //debug('Registering route: /examples');
+
+    //app.use('/examples',  isAuthenticated, express.static(__dirname + '/../../examples'));
+
+    router.get('/json-stream', isAuthenticated, function(req, res){
+        //app.get('/json-stream', function(req, res){
+        console.log("user: "+req["user"]);
+        res.render('json-stream', { user: req.user });
+    });
+
+    return router;
 }
 
 
