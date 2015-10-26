@@ -10,17 +10,11 @@ module.exports = function(passport){
         res.render('index.jade', { message: req.flash('message') });
     });
 
-    /* GET Home Page */
-    router.get('/home', isAuthenticated, function(req, res){
-        res.render('home', { user: req.user });
-    });
-
     /* Handle Logout */
-    router.get('/logout', function(req, res) {
+    router.get('/logout', isAuthenticated,  function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/login');
     });
-
 
     // Redirect the user to the OAuth 2.0 provider for authentication.  When
     // complete, the provider will redirect the user back to the application at
@@ -35,17 +29,22 @@ module.exports = function(passport){
     router.get('/login/squiddio/callback',
         passport.authenticate('squiddio', {
             successRedirect: '/home',
-            failureRedirect: '/' }));
+            failureRedirect: '/' })
+    );
 
 
+    /* GET Home Page */
+    router.get('/home', isAuthenticated, function(req, res){
+        res.render('home', { user: req.user });
+    });
 
     //debug('Registering route: /examples');
 
     //app.use('/examples',  isAuthenticated, express.static(__dirname + '/../../examples'));
 
-    router.get('/json-stream', isAuthenticated, function(req, res){
+    router.get('/json-stream', isAuthenticated,  function(req, res){
         //app.get('/json-stream', function(req, res){
-        console.log("user: "+req["user"]);
+        console.log("user: "+ req.user);
         res.render('json-stream', { user: req.user });
     });
 
