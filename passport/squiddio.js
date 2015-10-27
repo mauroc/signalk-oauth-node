@@ -16,8 +16,8 @@ module.exports = function(passport) {
         },
         function(accessToken, refreshToken, params, profile, done) {
 
-            console.log('profile: ', profile);
-            console.log('params: ', params);
+            //console.log('profile: ', profile);
+            //console.log('params: ', params);
 
             // asynchronous
             process.nextTick(function() {

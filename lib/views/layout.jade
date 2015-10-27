@@ -7,6 +7,12 @@ html
     link(rel='stylesheet', href='/stylesheets/bootstrap-social.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    p.
-        User: #{user}
+    #user
+        if user
+            div(style="float:left")
+                a(href='/home') Home
+            div(style="float:left;margin-left:45%") Welcome #{user.squiddio.firstName}
+            div(style="float:right")
+                a(href='/logout') Sign Out
+            div(style="clear:both")
     block content

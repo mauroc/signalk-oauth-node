@@ -7,7 +7,7 @@ module.exports = function(passport){
     /* GET login page. */
     router.get('/login', function(req, res) {
         // Display the Login page with any flash message, if any
-        res.render('index.jade', { message: req.flash('message') });
+        res.render('login.jade', { message: req.flash('message') });
     });
 
     /* Handle Logout */
