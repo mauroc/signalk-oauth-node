@@ -1,23 +1,13 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"   // Avoids DEPTH_ZERO_SELF_SIGNED_CERT error for self-signed certs
 
-//var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 var SquiddioStrategy = require('../node_modules/passport-squiddio/lib/index').Strategy;
 var User = require('../models/user');
+var oauth_settings = require('../settings/squiddio-settings.json');
 
 
 module.exports = function(passport) {
-    passport.use('squiddio', new SquiddioStrategy({
-            authorizationURL: 'https://localhost:9000/oauth/authorize',
-            tokenURL:       'https://localhost:9000/oauth/token',
-            clientID:       '748a168a0398d039bfdc815de23852e5483b2ac23040b2f55344e4087b89a273',
-            clientSecret:   '6fa789acd6d70777b92eec2dc6900ab3b3fc31d24bd1c87ef4e914b6fc9ab39d',
-            //callbackURL:    'https://localhost:3000/login/squiddio/callback'
-            callbackURL:    'http://localhost:3000/login/squiddio/callback'
-        },
+    passport.use('squiddio', new SquiddioStrategy( oauth_settings,
         function(accessToken, refreshToken, params, profile, done) {
-
-            //console.log('profile: ', profile);
-            //console.log('params: ', params);
 
             // asynchronous
             process.nextTick(function() {
@@ -52,7 +42,6 @@ module.exports = function(passport) {
                             return done(null, newUser);
                         });
                     }
-
 
                     done(err, user);
                 });

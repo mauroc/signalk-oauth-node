@@ -32,15 +32,11 @@ module.exports = function(passport){
             failureRedirect: '/' })
     );
 
-
     /* GET Home Page */
-    router.get('/home', isAuthenticated, function(req, res){
+    //router.get('/home', isAuthenticated, function(req, res){
+    router.get('/home', function(req, res){
         res.render('home', { user: req.user });
     });
-
-    //debug('Registering route: /examples');
-
-    //app.use('/examples',  isAuthenticated, express.static(__dirname + '/../../examples'));
 
     router.get('/json-stream', isAuthenticated,  function(req, res){
         //app.get('/json-stream', function(req, res){

@@ -3,10 +3,15 @@ html
   head
     title= title
     link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
-    link(rel='stylesheet', href='/stylesheets/bootstrap-social.css')
+    //link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
+    //link(rel='stylesheet', href='/stylesheets/bootstrap-social.css')
+    link(rel='stylesheet', href='http://squidd.io/assets/bootstrap.css')
+
+
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    if message
+        h1.text-center.error-message #{message}
     #user
         if user
             div(style="float:left")
