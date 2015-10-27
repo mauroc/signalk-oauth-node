@@ -2,11 +2,11 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"   // Avoids DEPTH_ZERO_SELF_SIGNE
 
 var SquiddioStrategy = require('../node_modules/passport-squiddio/lib/index').Strategy;
 var User = require('../models/user');
-var oauth_settings = require('../settings/squiddio-settings.json');
+var oauthSettings = require('../settings/squiddio-settings.json');
 
 
 module.exports = function(passport) {
-    passport.use('squiddio', new SquiddioStrategy( oauth_settings,
+    passport.use('squiddio', new SquiddioStrategy( oauthSettings,
         function(accessToken, refreshToken, params, profile, done) {
 
             // asynchronous
@@ -42,6 +42,7 @@ module.exports = function(passport) {
                             return done(null, newUser);
                         });
                     }
+
 
                     done(err, user);
                 });

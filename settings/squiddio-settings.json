@@ -3,5 +3,6 @@
     "tokenURL":       "https://192.168.1.122:9000/oauth/token",
     "clientID":       "748a168a0398d039bfdc815de23852e5483b2ac23040b2f55344e4087b89a273",
     "clientSecret":   "6fa789acd6d70777b92eec2dc6900ab3b3fc31d24bd1c87ef4e914b6fc9ab39d",
-    "callbackURL":    "http://localhost:3000/login/squiddio/callback"
+    "callbackURL":    "http://localhost:3000/login/squiddio/callback",
+    "sessionDuration": 86400
 }

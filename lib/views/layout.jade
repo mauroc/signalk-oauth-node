@@ -25,4 +25,5 @@ html
 			block content
 		#user_bottom
 			if user
-				div(style="text-align:center") #{"User: "+user.squiddio.email} #{"     -    Token Expires on: "+new Date(user.squiddio.tokenExpires*1000) }
+				div(style="text-align:center") Authenticated with sQuidd.io #{" - user: "+user.squiddio.email} #{"     -    Token Expires on: "+new Date(user.squiddio.tokenExpires*1000) }
+			div(style="text-align:center;font-size:smaller;margin-top:10px;") Server id: #{oauthSettings.clientID}
