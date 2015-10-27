@@ -15,8 +15,9 @@ block content
         a(href='/logout') Sign Out
     div(style="clear:both")
     br.
+    p. (View this live stream in terminal by typing:  <em>wscat --connect 'ws://localhost:3000/signalk/stream/v1?stream=delta&user_id=#{user.squiddio.id}&token=#{user.squiddio.token}'</em>)
     pre
-        div#data(style="min-height:800px;")
+        div#data(style="min-height:700px;")
 script.
     var signalKStream = Primus.connect(window.location.hostname + "/signalk/stream/v1?stream=delta&user_id=#{user.squiddio.id}&token=#{user.squiddio.token}", {
         reconnect: {

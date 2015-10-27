@@ -1,23 +1,28 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-    //link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
-    //link(rel='stylesheet', href='/stylesheets/bootstrap-social.css')
-    link(rel='stylesheet', href='http://squidd.io/assets/bootstrap.css')
-
-
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    if message
-        h1.text-center.error-message #{message}
-    #user
-        if user
-            div(style="float:left")
-                a(href='/home') Home
-            div(style="float:left;margin-left:45%") Welcome #{user.squiddio.firstName}
-            div(style="float:right")
-                a(href='/logout') Sign Out
-            div(style="clear:both")
-    block content
+	head
+		title= title
+		link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+		link(rel='stylesheet', href='http://squidd.io/assets/bootstrap.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		#user_top
+			if user
+				div(style="float:left")
+					a(href='/home') Home
+				div(style="float:left;margin-left:43%;font-weight:bold;") Welcome #{user.squiddio.firstName}
+				div(style="float:right")
+					a(href='/logout') Sign Out
+				div(style="clear:both")
+			else
+				p(style="text-align:center")
+		h3.text-center SignalK Authenticated Server (beta)
+		if message
+			h4.text-center.error-message(style="color:red;") #{message}
+		br
+		br
+		div(style="min-height:600px")
+			block content
+		#user_bottom
+			if user
+				div(style="text-align:center") #{"User: "+user.squiddio.email} #{"     -    Token Expires on: "+new Date(user.squiddio.tokenExpires*1000) }

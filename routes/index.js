@@ -7,7 +7,7 @@ module.exports = function(passport){
     /* GET login page. */
     router.get('/login', function(req, res) {
         // Display the Login page with any flash message, if any
-        res.render('login.jade', { message: req.flash('message') });
+        res.render('login.jade', { message:req.flash('error') });
     });
 
     /* Handle Logout */
@@ -33,7 +33,10 @@ module.exports = function(passport){
     );
 
     /* GET Home Page */
-    //router.get('/home', isAuthenticated, function(req, res){
+    router.get('/', function(req, res){
+        res.render('home', { user: req.user });
+    });
+
     router.get('/home', function(req, res){
         res.render('home', { user: req.user });
     });
