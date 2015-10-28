@@ -1,6 +1,6 @@
 {
-    "clientID":       "748a168a0398d039bfdc815de23852e5483b2ac23040b2f55344e4087b89a273",
-    "clientSecret":   "6fa789acd6d70777b92eec2dc6900ab3b3fc31d24bd1c87ef4e914b6fc9ab39d",
+    "clientID":       "1b0fe96fe8c6c2e4881cfe8a394d6757b46b876a94a4d2c7d60faadff6d0904d",
+    "clientSecret":   "36bbdf0ae1f493bb609ca2f3465a3fc123a2ad68df7b6ad8d3aaa5b05bac8ad6",
 
     "tokenURL":       "https://192.168.1.122:9000/oauth/token",
     "authorizationURL": "https://192.168.1.122:9000/oauth/authorize",

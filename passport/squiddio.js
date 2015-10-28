@@ -21,9 +21,8 @@ module.exports = function(passport) {
                         return done(err);
 
                     // if the user is found then log them in
-                    if (user) {
-                        return done(null, user); // user found, return that user
-                    } else {
+                    if (!user) {
+
                         // if there is no user, create them
                         var newUser                 = new User();
 
@@ -34,6 +33,9 @@ module.exports = function(passport) {
                         newUser.squiddio.email          = profile.email;
                         newUser.squiddio.firstName      = profile.firstName;
                         newUser.squiddio.lastName       = profile.lastName;
+                        newUser.squiddio.boat.id        = profile.boat.id;
+                        newUser.squiddio.boat.name      = profile.boat.name;
+                        newUser.squiddio.boat.mmsi      = profile.boat.mmsi;
 
                         // save our user into the database
                         newUser.save(function(err) {
@@ -41,10 +43,13 @@ module.exports = function(passport) {
                                 throw err;
                             return done(null, newUser);
                         });
+                    } else {
+                        return done(null, user); // user found, return that user
                     }
 
+                    console.log('user saved');
 
-                    done(err, user);
+                    //done(err, user);
                 });
             });
         }

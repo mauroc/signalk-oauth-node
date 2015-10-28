@@ -8,7 +8,12 @@ module.exports = mongoose.model('User',{
         tokenExpires: Number,
         firstName: String,
         lastName: String,
-        email: String
+        email: String,
+        boat: {
+            id: String,
+            name: String,
+            mmsi: String
+        }
     }
 
 });
