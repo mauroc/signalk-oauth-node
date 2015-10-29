@@ -47,9 +47,6 @@ module.exports = function(passport) {
                         return done(null, user); // user found, return that user
                     }
 
-                    console.log('user saved');
-
-                    //done(err, user);
                 });
             });
         }
