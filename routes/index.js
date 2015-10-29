@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var isAuthenticated = require('../lib/isauth');
-var request = require('request');
+var auth_req = require('../lib/auth_req');
+
 
 module.exports = function(passport){
 
@@ -48,23 +49,13 @@ module.exports = function(passport){
         res.render('json-stream', { user: req.user });
     });
 
-    router.get("/vessels/self",  function(req, res){
-        console.log("user: "+ req.user);
-        id = req.user.squiddio.boat.mmsi
-
-        request("https://localhost:9000/signalk/api/v1/vessels/"+id+"?access_token="+req.user.squiddio.token, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                res.setHeader('Content-Type', 'application/json');
-                res.send(body);
-            } else {
-                console.log(error);
-            }
-        })
+    router.get("/vessels/self", isAuthenticated,  function(req, res){
+        var id  = req.user.squiddio.boat.mmsi
+        auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id)
     });
 
-
     return router;
-}
+};
 
 
 
