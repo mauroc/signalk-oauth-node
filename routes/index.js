@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var isAuthenticated = require('../lib/isauth');
+var request = require('request');
 
 module.exports = function(passport){
 
@@ -46,6 +47,21 @@ module.exports = function(passport){
         console.log("user: "+ req.user);
         res.render('json-stream', { user: req.user });
     });
+
+    router.get("/vessels/self",  function(req, res){
+        console.log("user: "+ req.user);
+        id = req.user.squiddio.boat.mmsi
+
+        request("https://localhost:9000/signalk/api/v1/vessels/"+id+"?access_token="+req.user.squiddio.token, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.setHeader('Content-Type', 'application/json');
+                res.send(body);
+            } else {
+                console.log(error);
+            }
+        })
+    });
+
 
     return router;
 }
