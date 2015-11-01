@@ -1,23 +1,54 @@
 extends layout
 
 block content
-	div.container(style="width:400px")
+	div.container(style="width:800px")
 		div.col-sm-6.col-md-4.col-md-offset-4
 			#user
 		div.signup-wall
-			ul.user-details
-				li localhost
-				li
-					a(href='/json-stream') Authenticated socket json rendering
-				li
-					a(href='/signalk/api/v1/vessels/') Sample query
-				br				
-				li squiddio					
-				li
-					a(href='/vessels/self') Authenticated real time feed (me)
-				li 					 
-					a(href='http://stream.squidd.io/signalk/api/v1/vessels/') AIS sailing & pleasure crafts
-				li 					 
-					a(href='http://stream.squidd.io/signalk/api/v1/vessels/') Friends latest positions
-				li				li 					 
-					a(href='http://stream.squidd.io/signalk/api/v1/vessels/') Nearby destinations
+			table
+				tr
+					td(style="width:50%;") Authenticated endpoint
+					td(style="width:50%;") Notes
+				tr				
+					td(colspan=2 style="background-color:#cccccc") <b>localhost</b>
+				tr
+					td
+						a(href='/json-stream') http://localhost:3000/json-stream
+					td Authenticated socket json rendering		
+				tr
+					td
+						a(href='/signalk/api/v1/vessels/') http://localhost:3000/signalk/api/v1/vessels/
+					td Sample query
+												
+				tr
+					td(colspan=2)
+				tr				
+					td(colspan=2 style="background-color:#cccccc") <b>squiddio</b>	
+				tr			
+					td						
+						a(href='http://stream.squidd.io:3000/json-stream?user_id=#{user.squiddio.id}&token=#{user.squiddio.token}') http://stream.squidd.io:3000/json-stream
+					td Authenticated socket json rendering										
+				tr			
+					td						
+						a(href='/vessels/self') http://squidd.io/signalk/api/v1/vessels/self
+					td Own vessel data		
+				tr 					 
+					td 
+						a(href='/vessels/') http://squidd.io/signalk/api/v1/vessels/ 
+					td AIS sailing & pleasure crafts (limit 1000)
+				tr 					 
+					td 
+						a(href='/vessels/215*') http://squidd.io/signalk/api/v1/vessels/215* 
+					td AIS sailing & pleasure crafts registered in Malta (limit 1000)				
+				tr 					 
+					td 
+						a(href='/vessels/self:friends/navigation') http://squidd.io/signalk/api/v1/vessels/self:friends/navigation
+					td	Latest navigation data of boats in squiddio friends list		
+				tr 					 
+					td 
+						a(href='/vessels/self:nearby') http://squidd.io/signalk/api/v1/vessels/self:nearby
+					td	Nearby vessels										
+				tr									 
+					td
+						a(href='https://localhost:9000/signalk/api/v1/vessels/') http://squidd.io/signalk/api/v1/vessels/
+					td	Nearby destinations					

@@ -34,12 +34,12 @@ module.exports = function(passport){
             failureRedirect: '/' })
     );
 
-    /* GET Home Page */
     router.get('/', function(req, res){
         res.render('home', { user: req.user });
     });
 
     router.get('/home', function(req, res){
+        console.log(req.user);
         res.render('home', { user: req.user });
     });
 
@@ -49,8 +49,19 @@ module.exports = function(passport){
         res.render('json-stream', { user: req.user });
     });
 
-    router.get("/vessels/self", isAuthenticated,  function(req, res){
-        var id  = req.user.squiddio.boat.mmsi
+    router.get("/vessels", isAuthenticated,  function(req, res){
+        auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/")
+    });
+
+    router.get("/vessels/:id", isAuthenticated,  function(req, res){
+        var id  = req.params["id"]  ;
+        console.log(id);
+        auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id)
+    });
+
+    router.get("/vessels/:id/navigation/position", isAuthenticated,  function(req, res){
+        var id  = req.params["id"]  ;
+        console.log(id);
         auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id)
     });
 
