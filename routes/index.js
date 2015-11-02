@@ -65,6 +65,12 @@ module.exports = function(passport){
         auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id+"/navigation")
     });
 
+    router.get("/resources/:id/waypoints", isAuthenticated,  function(req, res){
+        var id  = req.params["id"]  ;
+        console.log(id);
+        auth_req(req, res, "https://localhost:9000/signalk/api/v1/resources/"+id+"/waypoints")
+    });
+
     return router;
 };
 
