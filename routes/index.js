@@ -59,10 +59,10 @@ module.exports = function(passport){
         auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id)
     });
 
-    router.get("/vessels/:id/navigation/position", isAuthenticated,  function(req, res){
+    router.get("/vessels/:id/navigation", isAuthenticated,  function(req, res){
         var id  = req.params["id"]  ;
         console.log(id);
-        auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id)
+        auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id+"/navigation")
     });
 
     return router;

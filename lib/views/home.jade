@@ -26,7 +26,7 @@ block content
 					td(colspan=2 style="background-color:#cccccc") <b>squiddio</b>	
 				tr			
 					td						
-						a(href='http://stream.squidd.io:3000/json-stream?user_id=#{user.squiddio.id}&token=#{user.squiddio.token}') http://stream.squidd.io:3000/json-stream
+						a(href='http://stream.squidd.io:3000/json-stream?user_id=#{user ? user.squiddio.id : 0}&token=#{user ? user.squiddio.token : 0}') http://stream.squidd.io:3000/json-stream
 					td Authenticated socket json rendering										
 				tr			
 					td						
@@ -46,7 +46,7 @@ block content
 					td	Latest navigation data of boats in squiddio friends list		
 				tr 					 
 					td 
-						a(href='/vessels/self:nearby') http://squidd.io/signalk/api/v1/vessels/self:nearby
+						a(href='/vessels/self:nearby/navigation') http://squidd.io/signalk/api/v1/vessels/self:nearby/navigation
 					td	Nearby vessels										
 				tr									 
 					td
