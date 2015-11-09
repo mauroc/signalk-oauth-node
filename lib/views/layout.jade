@@ -9,8 +9,9 @@ html
 		#user_top
 			if user
 				div(style="float:left")
-					a(href='/home') Home
-				div(style="float:left;margin-left:43%;font-weight:bold;") Welcome #{user.squiddio.firstName}
+					a(href='/home')                 
+						img(src='/stylesheets/images/signalk-logo.png', class='logo-img')
+				div(style="float:left;margin-left:40%;font-weight:bold;") Welcome #{user.squiddio.firstName}
 				div(style="float:right")
 					a(href='/logout') Sign Out
 				div(style="clear:both")

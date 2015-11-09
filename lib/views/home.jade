@@ -8,7 +8,7 @@ block content
 			table
 				tr
 					td(style="width:50%;") Authenticated endpoint
-					td(style="width:50%;") Notes
+					td(style="width:50%;") Description
 				tr				
 					td(colspan=2 style="background-color:#cccccc") <b>localhost</b>
 				tr
@@ -35,7 +35,7 @@ block content
 				tr 					 
 					td 
 						a(href='/vessels/') http://squidd.io/signalk/api/v1/vessels/ 
-					td AIS sailing & pleasure crafts (limit 1000)
+					td AIS sailing & pleasure crafts (AIS cat. 36 and 37. Limit 1000)
 				tr 					 
 					td 
 						a(href='/vessels/215*') http://squidd.io/signalk/api/v1/vessels/215* 
@@ -43,12 +43,12 @@ block content
 				tr 					 
 					td 
 						a(href='/vessels/self:friends/navigation') http://squidd.io/signalk/api/v1/vessels/self:friends/navigation
-					td	Latest navigation data of boats in squiddio friends list		
+					td	Latest navigation data of boats in sQuiddio follow list		
 				tr 					 
 					td 
 						a(href='/vessels/self:nearby/navigation') http://squidd.io/signalk/api/v1/vessels/self:nearby/navigation
-					td	Nearby vessels										
+					td	Vessels near own vessel 										
 				tr									 
 					td
 						a(href='/resources/self:nearby/waypoints') http://squidd.io/signalk/api/v1/resources/self:nearby/waypoints
-					td	Nearby destinations					
+					td	Destinations near own vessel					
