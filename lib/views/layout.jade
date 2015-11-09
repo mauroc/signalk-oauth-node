@@ -15,7 +15,9 @@ html
 					a(href='/logout') Sign Out
 				div(style="clear:both")
 			else
-				p(style="text-align:center")
+				div(style="float:right")
+					a(href='/login') Sign In
+
 		h3.text-center SignalK Authenticated Server (beta)
 		if message
 			h4.text-center.error-message(style="color:red;") #{message}

@@ -43,31 +43,28 @@ module.exports = function(passport){
         res.render('home', { user: req.user });
     });
 
-    router.get('/json-stream', isAuthenticated,  function(req, res){
+    router.get('/json-stream',  function(req, res){
         //app.get('/json-stream', function(req, res){
         console.log("user: "+ req.user);
         res.render('json-stream', { user: req.user });
     });
 
-    router.get("/vessels", isAuthenticated,  function(req, res){
+    router.get("/vessels",  function(req, res){
         auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/")
     });
 
-    router.get("/vessels/:id", isAuthenticated,  function(req, res){
+    router.get("/vessels/:id", function(req, res){
         var id  = req.params["id"]  ;
-        console.log(id);
         auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id)
     });
 
-    router.get("/vessels/:id/navigation", isAuthenticated,  function(req, res){
+    router.get("/vessels/:id/navigation", function(req, res){
         var id  = req.params["id"]  ;
-        console.log(id);
         auth_req(req, res, "https://localhost:9000/signalk/api/v1/vessels/"+id+"/navigation")
     });
 
-    router.get("/resources/:id/waypoints", isAuthenticated,  function(req, res){
-        var id  = req.params["id"]  ;
-        console.log(id);
+    router.get("/resources/:id/waypoints",  function(req, res){
+        var id  = req.params["id"] || 0 ;
         auth_req(req, res, "https://localhost:9000/signalk/api/v1/resources/"+id+"/waypoints")
     });
 
