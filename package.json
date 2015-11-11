@@ -45,6 +45,7 @@
     "node": "v0.10.x"
   },
   "dependencies": {
+    "mysql": "^2.5.4",
     "bcrypt-nodejs": "*",
     "body-parser": "~1.0.0",
     "colors": "^0.6.2",
