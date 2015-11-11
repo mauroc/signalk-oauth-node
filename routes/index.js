@@ -44,7 +44,6 @@ module.exports = function(passport){
     });
 
     router.get('/json-stream', isAuthenticated, function(req, res){
-        console.log("user: "+ req.user);
         res.render('json-stream', { user: req.user });
     });
 
