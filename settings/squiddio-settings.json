@@ -6,5 +6,5 @@
     "authorizationURL": "https://localhost:9000/oauth/authorize",
     "profileURL":       "https://localhost:9000/signalk/api/v1/users/me",
     "callbackURL":      "http://localhost:3000/login/squiddio/callback",
-    "sessionDuration": 86400
+    "sessionDuration":  86400
 }

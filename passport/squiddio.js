@@ -12,8 +12,13 @@ module.exports = function(passport) {
             // asynchronous
             process.nextTick(function() {
 
+                console.log("profile");
+                console.log(profile);
+
                 User.findOne({ 'squiddio.id' : profile.id } , function(err, user) {
 
+                    console.log("user: "+user);
+                    console.log("err: "+err);
                     // if there is an error, stop everything and return that
                     // ie an error connecting to the database
 
@@ -22,6 +27,7 @@ module.exports = function(passport) {
 
                     // if the user is found then log them in
                     if (!user) {
+                        console.log("user not found");
 
                         // if there is no user, create them
                         var newUser                 = new User();
@@ -29,15 +35,16 @@ module.exports = function(passport) {
                         // set all of the user data that we need
                         newUser.squiddio.id             = profile.id;
                         newUser.squiddio.token          = accessToken;
-                        newUser.squiddio.tokenExpires   = Math.floor(new Date().getTime()/1000) + params.expires_in;
                         newUser.squiddio.email          = profile.email;
                         newUser.squiddio.firstName      = profile.firstName;
                         newUser.squiddio.lastName       = profile.lastName;
                         newUser.squiddio.boat.id        = profile.boat.id;
                         newUser.squiddio.boat.name      = profile.boat.name;
                         newUser.squiddio.boat.mmsi      = profile.boat.mmsi;
+                        newUser.tokenExpires            = Math.floor(new Date().getTime()/1000) + params.expires_in;
 
                         // save our user into the database
+                        console.log(newUser);
                         newUser.save(function(err) {
                             if (err)
                                 throw err;
