@@ -1,0 +1,14 @@
+{
+    "db_type": "mysql",
+    "mysql":{
+        "host":  "localhost",
+        "db":   "BBX_development",
+        "user": "root",
+        "pwd":  "P0nte_di_legn0"
+    },
+    "mongoose": {
+        "url":  "mongodb://localhost/test",
+        "pwd":  ""
+    }
+
+}

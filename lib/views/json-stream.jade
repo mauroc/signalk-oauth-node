@@ -9,7 +9,8 @@ head
     script(src='/signalk/stream/v1/primus.js')
 block content
     div(style="float:left")
-        a(href='/home') Home
+        a(href='/home')
+            img(src='/stylesheets/images/signalk-logo.png', class='logo-img')
     div(style="float:left;margin-left:45%") Welcome #{user.squiddio.firstName}
     div(style="float:right")
         a(href='/logout') Sign Out
