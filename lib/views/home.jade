@@ -1,20 +1,18 @@
 extends layout
 
 block content
-	div.container(style="width:800px")
+	div.container(style="width:940px")
 		div.col-sm-6.col-md-4.col-md-offset-4
 			#user
-		div.signup-wall
+		div.signup-wall(style="margin-top:0;padding:0;")
 			table
-				tr
-					td(style="width:50%;") Authenticated endpoint
-					td(style="width:50%;") Description
-				tr
-					td(colspan=2 style="background-color:#cccccc") <b>localhost</b>
+				
+				tr				
+					td(colspan=2 style="background-color:#cccccc") Examples of authenticated browser requests to: <b>Signalk on localhost</b>
 				tr
 					td
-						a(href='/json-stream') http://localhost:3000/json-stream
-					td Authenticated socket json rendering		
+						a(href='/websocket-demo') http://localhost:3000/websocket-demo
+					td Json rendering of locahost websocket (nmea-from-file)		
 				tr
 					td
 						a(href='/signalk/api/v1/vessels/') http://localhost:3000/signalk/api/v1/vessels/
@@ -22,34 +20,36 @@ block content
 												
 				tr
 					td(colspan=2)
-				tr
-					td(colspan=2 style="background-color:#cccccc") <b>squiddio</b>	
-				tr
+
+				tr				
+					td(colspan=2 style="background-color:#cccccc") Examples of authenticated browser requests to: <b>Signalk demo server on squidd.io</b>				
+				tr			
 					td
-						a(href='http://squidd.io:3000/json-stream?user_id=#{user ? user.squiddio.id : 0}&token=#{user ? user.squiddio.token : 0}') http://squidd.io:3000/json-stream
-					td Authenticated socket json rendering										
-				tr
-					td
+						a(href="/websocket-demo?wsserver=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
+					td Json rendering of demo server websocket (real time vessel position reports)										
+				tr				
+					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://github.com/mauroc/signalk-oauth-node/blob/master/API.md">API requests</a> from <b>squiddio</b>					
+				tr			
+					td						
 						a(href='/vessels/self') http://squidd.io/signalk/api/v1/vessels/self
-					td Own vessel data
+					td Own vessel data		
 				tr 					 
 					td 
 						a(href='/vessels/') http://squidd.io/signalk/api/v1/vessels/ 
 					td AIS sailing & pleasure crafts (AIS cat. 36 and 37. Limit 1000)
 				tr 					 
-					td
+					td 
 						a(href='/vessels/215*') http://squidd.io/signalk/api/v1/vessels/215* 
 					td AIS sailing & pleasure crafts registered in Malta (limit 1000)				
 				tr 					 
 					td 
 						a(href='/vessels/self:friends/navigation') http://squidd.io/signalk/api/v1/vessels/self:friends/navigation
-					td	Latest navigation data of boats in sQuiddio follow list
-				tr
+					td	Latest navigation data of boats in sQuiddio follow list		
+				tr 					 
 					td 
 						a(href='/vessels/self:nearby/navigation') http://squidd.io/signalk/api/v1/vessels/self:nearby/navigation
-					td
-						Vessels near own vessel 										
-				tr
+					td	Vessels near own vessel 										
+				tr									 
 					td
 						a(href='/resources/self:nearby/waypoints') http://squidd.io/signalk/api/v1/resources/self:nearby/waypoints
 					td	Destinations near own vessel					

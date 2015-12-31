@@ -7,26 +7,27 @@ html
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
 		#user_top
+			div(style="float:left")
+				a(href='/home')                 
+					img(src='/stylesheets/images/signalk-logo.png', class='logo-img')
 			if user
-				div(style="float:left")
-					a(href='/home')                 
-						img(src='/stylesheets/images/signalk-logo.png', class='logo-img')
-				div(style="float:left;margin-left:40%;font-weight:bold;") Welcome #{user.squiddio.firstName}
+				div(style="float:left;margin-left:43%;font-weight:bold;text-align:center") Welcome #{user.squiddio.firstName}
 				div(style="float:right")
-					a(href='/logout') Sign Out
+					a(href='/logout') Log Out
 				div(style="clear:both")
 			else
 				div(style="float:right")
-					a(href='/login') Sign In
+					a(href='/login') Log In
 
 		h3.text-center SignalK Authenticated Server (beta)
 		if message
 			h4.text-center.error-message(style="color:red;") #{message}
 		br
 		br
-		div(style="min-height:600px")
+		div(style="min-height:640px")
 			block content
 		#user_bottom
 			if user
-				div(style="text-align:center") Authenticated with: sQuidd.io #{" - user: "+user.squiddio.email} #{" - vessel: "+user.squiddio.boat.name} #{"     -    Token Expires on: "+new Date(user.squiddio.tokenExpires*1000) }
-			div(style="text-align:center;font-size:smaller;margin-top:10px;") Server id: #{oauthSettings.clientID}
+				- expires = new Date(user.tokenExpires*1000);
+				div(style="text-align:center") Authenticated with: sQuidd.io #{" - user: "+user.squiddio.email} - #{"vessel: "+user.squiddio.boat.name} -  #{"Token Expires on: "+expires}
+			div(style="text-align:center;font-size:smaller;margin-top:10px;") Server id: #{oauthSettings.clientID} -  Server name:   #{oauthSettings.serverName}

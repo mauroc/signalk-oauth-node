@@ -9,6 +9,7 @@ module.exports = mongoose.model('User',{
         firstName: String,
         lastName: String,
         email: String,
+        isFriend: Boolean,
         boat: {
             id: String,
             name: String,
