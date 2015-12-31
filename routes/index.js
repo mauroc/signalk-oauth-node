@@ -26,7 +26,7 @@ module.exports = function(passport){
 
     router.get('/login/squiddio', passport.authenticate('squiddio'));
 
-    // The sQuidd.io OAuth 2.0 provider has redirected the user back to the application.
+    // The sQuiddio OAuth 2.0 provider has redirected the user back to the application.
     // Finish the authentication process by attempting to obtain an access
     // token.  If authorization was granted, the user will be logged in.
     // Otherwise, authentication has failed.
@@ -48,7 +48,6 @@ module.exports = function(passport){
         // res.query["wssserver"] indicates if webstream is to be sourced from localhost or squidd.io. It can be passed
         // as a parameter to /websocket-demo. If none, the current host is used.
         var wsServer = req.query["wsserver"] || req.headers.host ;
-console.log("wsServer  "+wsServer)
         res.render("websocket-demo", { user: req.user, wsServer: wsServer });
     });
 
@@ -72,6 +71,7 @@ console.log("wsServer  "+wsServer)
     });
 
     router.get("/swagger_doc",  function(req, res){
+        // api documentation
         // todo: implement this
         auth_req(req, res, authServer+"/signalk/api/v1/swagger_doc");
 

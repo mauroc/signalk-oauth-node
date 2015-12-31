@@ -21,7 +21,7 @@ module.exports = function(passport) {
                     // if the user is found then log them in
                     if (!user)  {
 
-                        // if access is restricted, verify that user is in sQuiddio follow list. If there is no user, create one
+                        // if access is restricted, verify that user is in sQuiddio follow list. If there is no user in local storage, create one
                         if (!oauthSettings.friendsOnly || (oauthSettings.friendsOnly== 1 && profile.isFriend == true)) {
                             var newUser                 = new User();
 
