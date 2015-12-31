@@ -21,6 +21,7 @@ Get up and running with your own authenticated SignalK Server
 ------------------
 Prerequisites:
 * MongoDB previously installed on the server (used to store credentials). Refer to the installation instructions for your OS. In the Raspberry PI2 it can be as simple as doing:
+
 ````
 apt-get update
 apt-get install mondogdb
@@ -30,6 +31,7 @@ apt-get install mondogdb
 * Node and npm installed. See [instructions](https://github.com/signalk/signalk-server-node) directly at the official SignalK repo.
 
 * Get the repo with `git clone https://github.com/mauroc/signalk-squiddio.git`
+
 
 * Go to the directory where you put the downloaded code and install dependencies with
 ````
@@ -52,7 +54,6 @@ npm install
 
 }
 ````
-
 Note:
 * _clientID and clientSecret_: Obtain these by logging into your sQuidd.io account and clicking on the boat's link in the Dashboard to access the boat's profile, Then click on the _more information_ button.  If you don't already have a boat in the system, click _Add a Boat_ in the Dashboard to create a new one. More info in the [FAQs](http://squidd.io/faq).
 * _localStorage_: The MongoDB database uri (e.g. MongoDB://localhost/test) if you intend to use a local version of MongoDB to store user's credentials. If you use a cloud version (e.g. Mongolab), you can enter the service url. On Mongolab, it will look something like this: 'url' : 'mongodb://mymongodb:mymongodb123@ds041404.mongolab.com:41404/squiddio_test'

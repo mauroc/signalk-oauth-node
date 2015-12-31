@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Fabian Tollenaar <fabian@starting-point.nl>
+ * Copyright 2015 Teppo Kurki <teppo.kurki@iki.fi>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,29 +16,28 @@
 
 var Transform = require('stream').Transform;
 
-function ToSignalK(options) {
+function Udp(options) {
   Transform.call(this, {
-    objectMode: true
+    objectMode: false
   });
-
-  this.parser = new(require('nmea0183-signalk').Parser)(options);
-
-  var that = this;
-  this.parser.on('delta', function(delta) {
-    that.push(delta);
-  });
+  this.options = options;
 }
 
-require('util').inherits(ToSignalK, Transform);
+require('util').inherits(Udp, Transform);
 
-ToSignalK.prototype._transform = function(chunk, encoding, done) {
-  try {
-    this.parser.write(chunk + '\n');
-  } catch (ex) {
-    console.error(ex);
-  }
+Udp.prototype.pipe = function(pipeTo) {
+  Udp.super_.prototype.pipe.call(this, pipeTo);
+
+  var socket = require('dgram').createSocket('udp4');
+  var self = this;
+  socket.on('message', function(message, remote) {
+    self.push(message);
+  });
+  socket.bind(this.options.port);
+}
+
+Udp.prototype._transform = function(chunk, encoding, done) {
   done();
 }
 
-
-module.exports = ToSignalK;
+module.exports = Udp;

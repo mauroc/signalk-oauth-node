@@ -29,8 +29,12 @@
     "nautic",
     "squiddio"
   ],
-  "author": "Fabian Tollenaar <fabian@starting-point.nl>",
+  "author": "Mauro Calvi <coupdemistral@gmail.com>",
   "contributors": [
+    {
+      "name": "Teppo Kurki",
+      "email": "teppo.kurki@iki.fi"
+    },
     {
       "name": "Teppo Kurki",
       "email": "teppo.kurki@iki.fi"
@@ -48,6 +52,7 @@
     "mysql": "^2.5.4",
     "bcrypt-nodejs": "*",
     "body-parser": "~1.0.0",
+
     "colors": "^0.6.2",
     "connect-flash": "*",
     "cookie-parser": "~1.0.1",
