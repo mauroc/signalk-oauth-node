@@ -1,7 +1,7 @@
-SignalK Server in node with client Oauth Authentication
+SignalK Server with client Oauth Authentication
 ================
 
-An experimental implementation of a [Signal K](http://signalk.org) server using OAuth Authentication through sQuidd.io.
+An experimental implementation of a [Signal K](http://signalk.org) server using OAuth2 Authentication through sQuidd.io.
 It allows you to control access to your Signalk server without the need to manage user credentials, passwords, certificates etc. locally. It also provides the server with access to a number of sQuidd.io [authenticated APIs](API.md) for the retrieval and sharing of nautical information (see below).
 
 Kicking the tires with a live SignalK server on sQuidd.io
@@ -11,7 +11,7 @@ Before you try anything on your SignalK server, you may want to peek at a demo i
 
 * Obtain a sQuidd.io account at http://squidd.io/signup if you don't already have one. Create a boat (it will be needed to obtain an authentication Client ID and Secret for your SignalK server and to log in). Update your boat's current position (some of the sample API requests require a known vessel position).
 
-* go to http://squidd.io:3000 and sign in
+* Go to http://squidd.io:3000 and sign in
 
 Select one of the few sample queries in the home page or view the live streaming page for real-time log updates.
 
@@ -27,7 +27,7 @@ apt-get update
 apt-get install mondogdb
 ````
   Alternatively, you can use a cloud-based version of MongoDB (e.g. Mongolab).
-* a sQuiddio account with at least one boat defined
+* A sQuiddio account with at least one boat defined
 * Node and npm installed. See [instructions](https://github.com/signalk/signalk-server-node) directly at the official SignalK repo.
 
 * Get the repo with `git clone https://github.com/mauroc/signalk-squiddio.git`
