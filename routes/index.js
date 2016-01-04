@@ -86,14 +86,7 @@ module.exports = function(passport){
     router.get("/resources/:id/waypoints",  function(req, res){
         // show list of squiddio waypoints near own vessel's current position
         var id  = req.params["id"] || 0 ;
-        auth_req(req, res, authServer+"/signalk/api/v1/resources/"+id+"/waypoints");
-    });
-
-    router.get("/swagger_doc",  function(req, res){
-        // api documentation
-        // todo: implement this
-        auth_req(req, res, authServer+"/signalk/api/v1/swagger_doc");
-
+        auth_req(req, res, authServer+"/signalk/api/v1/resources/waypoints/vessels/"+id);
     });
 
     return router;

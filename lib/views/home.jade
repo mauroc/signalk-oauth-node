@@ -42,7 +42,7 @@ block content
 						a(href="/websocket-demo?wsserver=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
 					td Json rendering of demo server websocket (real time vessel position reports)										
 				tr				
-					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://github.com/mauroc/signalk-oauth-node/blob/master/API.md">API requests</a> from <b>squiddio</b>					
+					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://squidd.io/api_docs">API requests</a> from <b>squiddio</b>					
 				tr			
 					td						
 						a(href='/vessels/self') http://squidd.io/signalk/api/v1/vessels/self
@@ -65,5 +65,5 @@ block content
 					td	Vessels near own vessel 										
 				tr									 
 					td
-						a(href='/resources/self:nearby/waypoints') http://squidd.io/signalk/api/v1/resources/self:nearby/waypoints
+						a(href='/resources/self:nearby/waypoints') http://squidd.io/signalk/api/v1/resources/waypoints/vessels/self:nearby
 					td	Destinations near own vessel					
