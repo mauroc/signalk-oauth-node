@@ -23,26 +23,19 @@ block content
 				
 				tr				
 					td(colspan=2 style="background-color:#cccccc") Examples of authenticated browser requests to: <b>Signalk on localhost</b>
-				tr
-					td
-						a(href='/websocket-demo') http://localhost:3000/websocket-demo
-					td Json rendering of locahost websocket (nmea-from-file)		
+	
 				tr
 					td
 						a(href='/signalk/api/v1/vessels/') http://localhost:3000/signalk/api/v1/vessels/
 					td Sample query
-												
 				tr
-					td(colspan=2)
-
-				tr				
-					td(colspan=2 style="background-color:#cccccc") Examples of authenticated browser requests to: <b>Signalk demo server on squidd.io</b>				
-				tr			
 					td
-						a(href="/websocket-demo?wsserver=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
-					td Json rendering of demo server websocket (real time vessel position reports)										
+						a(href='/websocket-demo') http://localhost:3000/websocket-demo
+					td Json rendering of locahost websocket (nmea-from-file)													
+
+									
 				tr				
-					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://squidd.io/api_docs">API requests</a> from <b>squiddio</b>					
+					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://squidd.io/api_docs" target="_blank">API requests</a> from <b>squiddio</b>					
 				tr			
 					td						
 						a(href='/vessels/self') http://squidd.io/signalk/api/v1/vessels/self
@@ -57,13 +50,21 @@ block content
 					td AIS sailing & pleasure crafts registered in Malta (limit 1000)				
 				tr 					 
 					td 
-						a(href='/vessels/self/navigation?friends=true') http://squidd.io/signalk/api/v1/vessels/self:friends/navigation?friends=true
-					td	Latest navigation data of boats in sQuiddio follow list		
+						a(href='/vessels/self/navigation?friends=true') http://squidd.io/signalk/api/v1/vessels/self/navigation?friends=true
+					td	Latest navigation data of vessels in vessel Self follow list		
 				tr 					 
 					td 
 						a(href='/vessels/self/navigation?within_range=20') http://squidd.io/signalk/api/v1/vessels/self/navigation?within_range=20
-					td	Vessels near own vessel 										
+					td	Vessels within 20 km of own vessel 										
 				tr									 
 					td
-						a(href='/resources/self/waypoints?within_range=20&friends=true') http://squidd.io/signalk/api/v1/resources/waypoints/vessels/self?within_range=20
-					td	Destinations near own vessel					
+						a(href='/resources/waypoints/country/US?region_code=CA') http://squidd.io/signalk/api/v1/resources/waypoints/country/US?region_code=CA
+					td	Destinations in California				
+				tr									 
+					td
+						a(href='/resources/waypoints/vessels/self?within_range=20') http://squidd.io/signalk/api/v1/resources/waypoints/vessels/self?within_range=20
+					td	Destinations within 20 km of own vessel				
+				tr			
+					td
+						a(href="/websocket-demo?wsserver=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
+					td Json rendering of demo server websocket (real time vessel position reports)						

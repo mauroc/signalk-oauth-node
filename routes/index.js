@@ -25,6 +25,9 @@ var authServer = require('../settings/oauth-settings.json')["authServer"];
 
 module.exports = function(passport){
 
+    function queryStr(query){
+        return '?'+qs.stringify(query) ;
+    }
 
     /* GET login page. */
     router.get('/login', function(req, res) {
@@ -75,20 +78,26 @@ module.exports = function(passport){
 
     router.get("/vessels/:id", function(req, res){
         var id  = req.params["id"]  ;
-        auth_req(req, res, authServer+"/signalk/api/v1/vessels/"+id);
+        var queryStr = '?'+qs.stringify(req.query);
+        auth_req(req, res, authServer+"/signalk/api/v1/vessels/"+id+queryStr);
     });
 
     router.get("/vessels/:id/navigation", function(req, res){
         // navigation data for :id vessel.
         var id  = req.params["id"]  ;
-        auth_req(req, res, authServer+"/signalk/api/v1/vessels/"+id+"/navigation");
+        auth_req(req, res, authServer+"/signalk/api/v1/vessels/"+id+"/navigation"+queryStr(req.query));
     });
 
-    router.get("/resources/:id/waypoints",  function(req, res){
+    router.get("/resources/waypoints/country/:country_code",  function(req, res){
+        // show list of squiddio waypoints near own vessel's current position
+        var country_code  = req.params["country_code"] || 0 ;
+        auth_req(req, res, authServer+"/signalk/api/v1/resources/waypoints/country/"+country_code+queryStr(req.query));
+    });
+
+    router.get("/resources/waypoints/vessels/:id",  function(req, res){
         // show list of squiddio waypoints near own vessel's current position
         var id  = req.params["id"] || 0 ;
-        console.log(req.query);
-        auth_req(req, res, authServer+"/signalk/api/v1/resources/waypoints/vessels/"+id);
+        auth_req(req, res, authServer+"/signalk/api/v1/resources/waypoints/vessels/"+id+queryStr(req.query));
     });
 
     return router;
