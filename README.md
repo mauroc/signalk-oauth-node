@@ -30,7 +30,7 @@ apt-get install mondogdb
 * A sQuiddio account with at least one boat defined
 * Node and npm installed. See [instructions](https://github.com/signalk/signalk-server-node) directly at the official SignalK repo.
 
-* Get the repo with `git clone https://github.com/mauroc/signalk-squiddio.git`
+* Get the repo with `git clone https://github.com/mauroc/signalk-oauth-node.git`
 
 
 * Go to the directory where you put the downloaded code and install dependencies with
@@ -55,10 +55,10 @@ npm install
 }
 ````
 Note:
-* _clientID and clientSecret_: Obtain these by logging into your sQuidd.io account and clicking on the boat's link in the Dashboard to access the boat's profile, Then click on the _more information_ button.  If you don't already have a boat in the system, click _Add a Boat_ in the Dashboard to create a new one. More info in the [FAQs](http://squidd.io/faq).
+* _clientID and clientSecret_: Obtain these by logging into your sQuidd.io account and clicking on the boat's link in the Dashboard to access the boat's profile (create a boat if you have not done it yet). Then edit your boat's profile and go to the APIs tab.  More info in the [FAQs](http://squidd.io/faq).
 * _localStorage_: The MongoDB database uri (e.g. MongoDB://localhost/test) if you intend to use a local version of MongoDB to store user's credentials. If you use a cloud version (e.g. Mongolab), you can enter the service url. On Mongolab, it will look something like this: 'url' : 'mongodb://mymongodb:mymongodb123@ds041404.mongolab.com:41404/squiddio_test'
 * _authServer....profileURL_: The authentication endpoints on sQuiddio. Leave the default values as indicated above.
-* _callbackURL_: The value above works in most cases. If not, replace localhost:3000 with whatever host name and port you use for your authenticated SignalK. For instance, if you run SignalK on a headless server on your boat's LAN, you can enter the LAN address followed by port number, e.g. 192.168.1.55:3000
+* _callbackURL_: The value above works in most cases. If not, replace localhost:3000 with whatever host name and port you use for your authenticated SignalK. For instance, if you run SignalK on a headless server on your boat's LAN, you can enter the LAN address followed by port number, e.g. 192.168.1.55:3000. In this case you also need to update the default callback url in your boat profile, APIs tab.
 * _sessionDuration_: The expiration time in seconds of the session cookie.
 * By default _anyone with a sQuiddio account can access the server_. Add the following option to your settings file to restrict access to only members of your sQuiddio's [follow list](http://squidd.io/faq#follow_list):
 ````

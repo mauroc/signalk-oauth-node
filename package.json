@@ -78,7 +78,8 @@
     "through": ">=2.2.7 <3",
     "winston": "^1.0.0",
     "ws": "^0.4.32" ,
-    "request": "*"
+    "request": "*",
+    "qs": "*"
   },
   "devDependencies": {
     "find-free-port": "^1.0.1",

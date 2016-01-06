@@ -19,6 +19,7 @@ var express = require('express');
 var router = express.Router();
 var isAuthenticated = require('../lib/isauth');
 var auth_req = require('../lib/auth_req');
+var qs = require('qs');
 
 var authServer = require('../settings/oauth-settings.json')["authServer"];
 
@@ -86,6 +87,7 @@ module.exports = function(passport){
     router.get("/resources/:id/waypoints",  function(req, res){
         // show list of squiddio waypoints near own vessel's current position
         var id  = req.params["id"] || 0 ;
+        console.log(req.query);
         auth_req(req, res, authServer+"/signalk/api/v1/resources/waypoints/vessels/"+id);
     });
 

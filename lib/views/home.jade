@@ -57,13 +57,13 @@ block content
 					td AIS sailing & pleasure crafts registered in Malta (limit 1000)				
 				tr 					 
 					td 
-						a(href='/vessels/self:friends/navigation') http://squidd.io/signalk/api/v1/vessels/self:friends/navigation
+						a(href='/vessels/self/navigation?friends=true') http://squidd.io/signalk/api/v1/vessels/self:friends/navigation?friends=true
 					td	Latest navigation data of boats in sQuiddio follow list		
 				tr 					 
 					td 
-						a(href='/vessels/self:nearby/navigation') http://squidd.io/signalk/api/v1/vessels/self:nearby/navigation
+						a(href='/vessels/self/navigation?within_range=20') http://squidd.io/signalk/api/v1/vessels/self/navigation?within_range=20
 					td	Vessels near own vessel 										
 				tr									 
 					td
-						a(href='/resources/self:nearby/waypoints') http://squidd.io/signalk/api/v1/resources/waypoints/vessels/self:nearby
+						a(href='/resources/self/waypoints?within_range=20&friends=true') http://squidd.io/signalk/api/v1/resources/waypoints/vessels/self?within_range=20
 					td	Destinations near own vessel					
