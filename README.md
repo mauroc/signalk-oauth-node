@@ -20,18 +20,11 @@ If you have an active <em>follow list</em> on sQuidd.io, you can watch your frie
 Get up and running with your own authenticated SignalK Server
 ------------------
 Prerequisites:
-* MongoDB previously installed on the server (used to store credentials). Refer to the installation instructions for your OS. In the Raspberry PI2 it can be as simple as doing:
-
-````
-apt-get update
-apt-get install mondogdb
-````
-  Alternatively, you can use a cloud-based version of MongoDB (e.g. Mongolab).
+* MongoDB previously installed on the server (used to store credentials). Refer to the installation instructions for your OS. Here's what I used on [Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-14-04). Alternatively, you can use a cloud-based version of MongoDB (e.g. Mongolab).
 * A sQuiddio account with at least one boat defined
 * Node and npm installed. See [instructions](https://github.com/signalk/signalk-server-node) directly at the official SignalK repo.
 
 * Get the repo with `git clone https://github.com/mauroc/signalk-oauth-node.git`
-
 
 * Go to the directory where you put the downloaded code and install dependencies with
 ````
