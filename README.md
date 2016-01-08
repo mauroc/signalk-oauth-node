@@ -4,12 +4,12 @@ SignalK Server with client Oauth Authentication
 An experimental implementation of a [Signal K](http://signalk.org) server using OAuth2 Authentication through sQuidd.io.
 It allows you to control access to your Signalk server without the need to manage user credentials, passwords, certificates etc. locally. It also provides the server with access to a number of sQuidd.io [authenticated APIs](http://squidd.io/api_docs) for the retrieval and sharing of nautical information (see below).
 
-Kicking the tires with a live SignalK server on sQuidd.io
+Kicking the tires with a live SignalK Oauth server on sQuidd.io
 ------------------
 
-Before you try anything on your SignalK server, you may want to peek at a demo implementation of the SignalK server running on sQuiddio. To do that:
+Before you try anything on your own SignalK Oauth server, you may want to peek at a demo implementation of the SignalK Oauth server running on sQuiddio. To do that:
 
-* Obtain a sQuidd.io account at http://squidd.io/signup if you don't already have one. Create a boat (it will be needed to obtain an authentication Client ID and Secret for your SignalK server and to log in). Update your boat's current position (some of the sample API requests require a known vessel position).
+* Obtain a sQuidd.io account at http://squidd.io/signup if you don't already have one. Create a boat (it will be needed to obtain an authentication Client ID and Secret for your SignalK Oauth server and to log in). Update your boat's current position (some of the sample API requests require a known vessel position).
 
 * Go to http://squidd.io:3000 and sign in
 
@@ -51,7 +51,7 @@ Note:
 * _clientID and clientSecret_: Obtain these by logging into your sQuidd.io account and clicking on the boat's link in the Dashboard to access the boat's profile (create a boat if you have not done it yet). Then edit your boat's profile and go to the APIs tab.  More info in the [FAQs](http://squidd.io/faq).
 * _localStorage_: The MongoDB database uri (e.g. MongoDB://localhost/test) if you intend to use a local version of MongoDB to store user's credentials. If you use a cloud version (e.g. Mongolab), you can enter the service url. On Mongolab, it will look something like this: 'url' : 'mongodb://mymongodb:mymongodb123@ds041404.mongolab.com:41404/squiddio_test'
 * _authServer....profileURL_: The authentication endpoints on sQuiddio. Leave the default values as indicated above.
-* _callbackURL_: The value above works in most cases. If not, replace localhost:3000 with whatever host name and port you use for your authenticated SignalK. For instance, if you run SignalK on a headless server on your boat's LAN, you can enter the LAN address followed by port number, e.g. 192.168.1.55:3000. In this case you also need to update the default callback url in your boat profile, APIs tab.
+* _callbackURL_: The value above works in most cases. If not, replace localhost:3000 with whatever host name and port you use for your authenticated SignalK. For instance, if you run SignalK Oauth on a headless server on your boat's LAN, you can enter the LAN address followed by port number, e.g. 192.168.1.55:3000. In this case you also need to update the default callback url in your boat profile, APIs tab.
 * _sessionDuration_: The expiration time in seconds of the session cookie.
 * By default _anyone with a sQuiddio account can access the server_. Add the following option to your settings file to restrict access to only members of your sQuiddio's [follow list](http://squidd.io/faq#follow_list):
 ````

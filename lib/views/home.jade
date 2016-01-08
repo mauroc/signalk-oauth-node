@@ -39,7 +39,7 @@ block content
 				tr			
 					td						
 						a(href='/vessels/self') http://squidd.io/signalk/api/v1/vessels/self
-					td Own vessel data		
+					td Self vessel data		
 				tr 					 
 					td 
 						a(href='/vessels/') http://squidd.io/signalk/api/v1/vessels/ 
@@ -55,7 +55,7 @@ block content
 				tr 					 
 					td 
 						a(href='/vessels/self/navigation?within_range=20') http://squidd.io/signalk/api/v1/vessels/self/navigation?within_range=20
-					td	Vessels within 20 km of own vessel 										
+					td	Vessels within 20 km of Self vessel 										
 				tr									 
 					td
 						a(href='/resources/waypoints/country/US?region_code=CA') http://squidd.io/signalk/api/v1/resources/waypoints/country/US?region_code=CA
@@ -63,7 +63,7 @@ block content
 				tr									 
 					td
 						a(href='/resources/waypoints/vessels/self?within_range=20') http://squidd.io/signalk/api/v1/resources/waypoints/vessels/self?within_range=20
-					td	Destinations within 20 km of own vessel				
+					td	Destinations within 20 km of Self vessel				
 				tr			
 					td
 						a(href="/websocket-demo?wsserver=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
