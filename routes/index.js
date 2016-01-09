@@ -58,11 +58,11 @@ module.exports = function(passport){
     );
 
     router.get('/', function(req, res){
-        res.render('home', { user: req.user });
+        res.render('home', { user: req.user, host: req.host });
     });
 
     router.get('/home', function(req, res){
-        res.render('home', { user: req.user });
+        res.render('home', { user: req.user, host: req.host });
     });
 
     router.get('/websocket-demo', function(req, res){

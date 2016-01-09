@@ -33,7 +33,7 @@ block content
 	div(style="clear:both")
 	br.
 	- if (user)
-		- if (wsServer == 'squidd.io:3000')
+		- if (wsServer == 'signalk.squidd.io:3000')
 			p. Real time position reports received by sQuidd.io (sources: manual updates, AIS, OpenCPN Plugin, Spot Tracker, GeoSMS and others).
 		p. View this live stream in terminal by typing:  <em>wscat --connect 'ws://#{wsServer}/signalk/stream/v1?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}'</em>
 	pre
@@ -47,7 +47,7 @@ script.
 		}
 	});
 	var dataDiv = document.getElementById('data');
-	dataDiv.innerHTML = 'waiting for data (may take a minute or more depending on vessel traffic)....';
+	dataDiv.innerHTML = 'waiting for data (may take a minute or two)....';
 	signalKStream.on('data', function(data) {
 		dataDiv.innerHTML = JSON.stringify(data, null, 2);
 	});

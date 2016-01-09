@@ -22,20 +22,19 @@ block content
 			table
 				
 				tr				
-					td(colspan=2 style="background-color:#cccccc") Examples of authenticated browser requests to: <b>Signalk on localhost</b>
+					td(colspan=2 style="background-color:#cccccc") Examples of authenticated browser requests to: <b>Signalk</b> on <b>#{host} </b>
 	
 				tr
 					td
-						a(href='/signalk/api/v1/vessels/') http://localhost:3000/signalk/api/v1/vessels/
+						a(href='/signalk/api/v1/vessels/') http://#{host}:3000/signalk/api/v1/vessels/
 					td Sample query
 				tr
 					td
-						a(href='/websocket-demo') http://localhost:3000/websocket-demo
-					td Json rendering of locahost websocket (nmea-from-file)													
-
+						a(href='/websocket-demo') http://#{host}:3000/websocket-demo
+					td Json rendering of locahost websocket 													
 									
 				tr				
-					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://squidd.io/api_docs" target="_blank">API requests</a> from <b>squiddio</b>					
+					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://squidd.io/api_docs" target="_blank">API requests</a> to <b>sQuiddio</b>					
 				tr			
 					td						
 						a(href='/vessels/self') http://squidd.io/signalk/api/v1/vessels/self
@@ -66,5 +65,5 @@ block content
 					td	Destinations within 20 km of Self vessel				
 				tr			
 					td
-						a(href="/websocket-demo?wsserver=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
+						a(href="/websocket-demo?wsserver=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://signalk.squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
 					td Json rendering of demo server websocket (real time vessel position reports)						
