@@ -33,7 +33,7 @@ html
 				div(style="float:right")
 					a(href='/login') Log In
 
-		h3.text-center SignalK Authenticated Server (beta)
+		h3.text-center SignalK Authenticated #{host=='squidd.io' ? 'Demo' : ''} Server (beta)
 		if message
 			h4.text-center.error-message(style="color:red;") #{message}
 		br

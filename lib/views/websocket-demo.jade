@@ -34,7 +34,10 @@ block content
 	br.
 	- if (user)
 		- if (wsServer == 'signalk.squidd.io:3000')
-			p. Real time position reports received by sQuidd.io (sources: manual updates, AIS, OpenCPN Plugin, Spot Tracker, GeoSMS and others).
+			p. Real time position AIS reports worldwide.
+		- else if (wsServer == 'squidd.io:3000')
+			p. Real time position reports from sQuidd.io users (sources: manual updates, AIS, OpenCPN Plugin, Spot Tracker, GeoSMS and others).
+		br.				
 		p. View this live stream in terminal by typing:  <em>wscat --connect 'ws://#{wsServer}/signalk/stream/v1?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}'</em>
 	pre
 		div#data(style="min-height:700px;")
