@@ -38,11 +38,11 @@ block content
 		- else if (wsServer == 'squidd.io:3000')
 			p. Real time position reports from sQuidd.io users (sources: manual updates, AIS, OpenCPN Plugin, Spot Tracker, GeoSMS and others).
 		br.				
-		p. View this live stream in terminal by typing:  <em>wscat --connect 'ws://#{wsServer}/signalk/stream/v1?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}'</em>
+		p. View this live stream in terminal by typing:  <em>wscat --connect 'ws://#{wsServer}/signalk/v1/stream?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}'</em>
 	pre
 		div#data(style="min-height:700px;")
 script.
-	var signalKStream = Primus.connect("http://#{wsServer}/signalk/stream/v1?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}", {
+	var signalKStream = Primus.connect("http://#{wsServer}/signalk/v1/stream?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}", {
 		reconnect: {
 			maxDelay: 15000,
 			minDelay: 500,
