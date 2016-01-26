@@ -6,12 +6,7 @@ bower_components
 .idea/
 /providers/npm-debug.log
 nohup.out
-/settings/credentials.json
-/settings/bbxais*.json
-/settings/database.json
 /settings/oauth*.json
-/settings/bbx-settings.json
 /settings/*.sh
-/bin/bbxais*
 npm-debug.log
 *.sh

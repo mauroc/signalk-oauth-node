@@ -43,5 +43,5 @@ html
 		#user_bottom
 			if user
 				- expires = new Date(user.tokenExpires*1000);
-				div(style="text-align:center") Authenticated with: sQuidd.io #{" - user: "+user.squiddio.email} - #{"vessel: "+user.squiddio.boat.name} -  #{"Token Expires on: "+expires}
+				div(style="text-align:center") #{"User: "+user.squiddio.email} - Authenticated with: sQuidd.io (#{"Token Expires on: "+expires})
 			div(style="text-align:center;font-size:smaller;margin-top:10px;") Server id: #{oauthSettings.clientID} -  Server name:   #{oauthSettings.serverName}

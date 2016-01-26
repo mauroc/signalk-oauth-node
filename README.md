@@ -35,7 +35,7 @@ npm install
 {
     "clientID":       "<your sQuiddio client ID>",
     "clientSecret":   "<your sQuiddio secret>",
-    "serverName":     "My boat's test SignalK server with squiddio auth",
+    "serverName":     "Authenticated SignalK Server on [your_boat_name]",
     "localStorage":   "mongodb://localhost/test",
 
     "authServer":       "https://squidd.io",

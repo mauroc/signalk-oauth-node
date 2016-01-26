@@ -79,7 +79,7 @@
     "winston": "^1.0.0",
     "ws": "^0.4.32" ,
     "request": "*",
-    "qs": "*"
+    "qs": "5.1.0"
   },
   "devDependencies": {
     "find-free-port": "^1.0.1",

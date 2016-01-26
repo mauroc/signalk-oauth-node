@@ -19,7 +19,7 @@ head
 	meta(charset='utf-8')
 	meta(http-equiv='X-UA-Compatible', content='IE=edge')
 	title Signal K consumer
-	script(src='/signalk/stream/v1/primus.js')
+	script(src='/signalk/v1/stream/primus.js')
 block content
 	div(style="float:left")
 		a(href='/home')
@@ -33,7 +33,7 @@ block content
 	div(style="clear:both")
 	br.
 	- if (user)
-		- if (wsServer == 'signalk.squidd.io:3000')
+		- if (wsServer == 'ws.squidd.io:3000')
 			p. Real time position AIS reports worldwide.
 		- else if (wsServer == 'squidd.io:3000')
 			p. Real time position reports from sQuidd.io users (sources: manual updates, AIS, OpenCPN Plugin, Spot Tracker, GeoSMS and others).

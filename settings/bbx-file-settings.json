@@ -1,0 +1,45 @@
+{
+    "vessel": {
+        "name"	: "Sloop sQuiddio",
+        "brand"	: "Jeannneau",
+        "type"	: "40",
+        "uuid"	: "urn:mrn:imo:mmsi:101010101",
+
+        "dimensions": {
+            "length": 12,
+            "width": 2.5,
+            "mast": 15,
+            "depthTransducer": 0.5,
+            "keel": 2.0
+        }
+    },
+
+    "pipedProviders": [{
+        "id": "bbxFromFile",
+        "pipeElements": [
+            {
+                "type": "providers/execute",
+                "options": {
+                    "command": "tail -f /home/rails/log/ais_json.log"
+                }
+            },
+            {
+                "type": "providers/throttle",
+                "options": {
+                    "rate": 500
+                }
+            },
+            {
+                "type": "providers/liner"
+            },
+            {
+                "type": "providers/from_json"
+            }
+        ]
+    }],
+    "interfaces": {
+        "bower": true,
+        "rest": true,
+        "ws": true
+    }
+}
