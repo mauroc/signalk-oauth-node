@@ -18,21 +18,24 @@
 var express = require('express');
 var router = express.Router();
 var isAuthenticated = require('../lib/isauth');
-var auth_req = require('../lib/auth_req');
-var qs = require('qs');
+var auth_get = require('../lib/auth_get');
+var auth_post = require('../lib/auth_post');
+var isOnline = require('is-online');
 
 var authServer = require('../settings/oauth-settings.json')["authServer"];
 
 module.exports = function(passport){
 
-    function queryStr(query){
-        return '?'+qs.stringify(query) ;
-    }
-
     /* GET login page. */
     router.get('/login', function(req, res) {
         // Display the Login page with any flash message, if any
-        res.render('login.jade', { message:req.flash('error') });
+        isOnline(function(err, online) {
+            if (online) {
+                res.render('login.jade', { message:req.flash('error') });
+            } else {
+                res.json({error: 'Sorry, login not possible at this time: the server is not connected to the Internet'});
+            }
+        });
     });
 
     /* Handle Logout */
@@ -58,11 +61,11 @@ module.exports = function(passport){
     );
 
     router.get('/', function(req, res){
-        res.render('home', { user: req.user, host: req.host });
+        res.render('home', { user: req.user, host: req.hostname });
     });
 
     router.get('/home', function(req, res){
-        res.render('home', { user: req.user, host: req.host });
+        res.render('home', { user: req.user, host: req.hostname });
     });
 
     router.get('/websocket-demo', function(req, res){
@@ -72,33 +75,58 @@ module.exports = function(passport){
         res.render("websocket-demo", { user: req.user, wsServer: wsServer });
     });
 
-    router.get("/vessels",  function(req, res){
-        auth_req(req, res, authServer+"/signalk/api/v1/vessels/");
+    router.get("/api_example_1",  function(req, res){
+        // all vessels in the database (limited at 200).Response will include vessels
+        // 1) that belong to a sQuiddio user and have an MMSI
+        // 2) that do no belong to a sQuiddio user but periodically advertise themselves on
+        // the AisHub network through message type 5 (in other words, the response may not be inclusive of all AIS vessels)
+        auth_get(req, res, authServer+"/signalk/api/v1/vessels/");
     });
 
-    router.get("/vessels/:id", function(req, res){
-        var id  = req.params["id"]  ;
-        var queryStr = '?'+qs.stringify(req.query);
-        auth_req(req, res, authServer+"/signalk/api/v1/vessels/"+id+queryStr);
+    router.get("/api_example_2", function(req, res){
+        // all information for vessel Self. Note that Self is the vessel associated with the clientID specified in settings/oauth-settings.json
+        // (aka Host Vessel), not the sQuiddio boat of the user currently logged in (Guest)
+        auth_get(req, res, authServer+"/signalk/api/v1/vessels/self");
     });
 
-    router.get("/vessels/:id/navigation", function(req, res){
-        // navigation data for :id vessel.
-        var id  = req.params["id"]  ;
-        auth_req(req, res, authServer+"/signalk/api/v1/vessels/"+id+"/navigation"+queryStr(req.query));
+    router.get("/api_example_3", function(req, res){
+        // information for all vessels with an MMSI starting with 215 (Malta - limited to 200 records). See note for example_1
+        auth_get(req, res, authServer+"/signalk/api/v1/vessels/imo:mmsi:215*");
     });
 
-    router.get("/resources/waypoints/country/:country_code",  function(req, res){
-        // show list of squiddio waypoints near own vessel's current position
-        var country_code  = req.params["country_code"] || 0 ;
-        auth_req(req, res, authServer+"/signalk/api/v1/resources/waypoints/country/"+country_code+queryStr(req.query));
+    router.get("/api_example_4", function(req, res){
+        // navigation information for all vessels in the Host Vessel's owner sQuiddio follow list. See https://squidd.io/faq#follow for more information.
+        // If the Host Vessel's owner doesn't have a follow list set up on sQuiddio, only vessel in response will be Self
+        auth_get(req, res, authServer+"/signalk/api/v1/vessels/self/navigation?friends=true" );
     });
 
-    router.get("/resources/waypoints/vessels/:id",  function(req, res){
-        // show list of squiddio waypoints near own vessel's current position
-        var id  = req.params["id"] || 0 ;
-        auth_req(req, res, authServer+"/signalk/api/v1/resources/waypoints/vessels/"+id+queryStr(req.query));
+    router.get("/api_example_5", function(req, res){
+        // navigation information for all vessels in the range of 20km of Self's latest reported position. Response will return an error if
+        // no position has been reported by Self. Update position manually at http://squidd.io/positions/new or use AIS, Spot Tracker, OpenCPN sQuiddio plugin etc. to
+        // report positions automatically. Or use the POST example below (api_example_8). "Range" is defined as an approximate box of 20x20 kms around the reference position.
+        // See https://squidd.io/faq#follow for more information.
+        auth_get(req, res, authServer+"/signalk/api/v1/vessels/self/navigation?within_range=20" );
     });
+
+    router.get("/api_example_6",  function(req, res){
+        // Destination ("waypoint") information for sQuiddio destinations in the State of California.
+        auth_get(req, res, authServer+"/signalk/api/v1/resources/waypoints/country/US?region_code=CA");
+    });
+
+    router.get("/api_example_7",  function(req, res){
+        // Destination ("waypoint") information for sQuiddio destinations within a range of 20 km of Self's latest reported position. See note at
+        // api_example_5 regarding reporting positions to sQuiddio.
+        auth_get(req, res, authServer+"/signalk/api/v1/resources/waypoints/vessels/self?within_range=20" );
+    });
+
+    router.get("/api_example_8",  function(req, res){
+        // POST sample navigation data to the guest user's sQuiddio account. Note: this creates an actual log post on sQuiddio and will be visible in the guest user's dashboard, shared
+        // with users in the guest user's Follow list (OpenCPN plugin etc).
+        req.body = {latitude: 37.864, longitude:  -122.491 , sog: 2.0, heading: 275 };
+        auth_post(req, res, authServer+"/signalk/api/v1/vessels/navigation/position.json" );
+    });
+
+    //************** more information on sQuiddio APIs at the interactive API console http://squidd.io/api_docs or at the json discovery url http://squidd.io/signalk *****************
 
     return router;
 };

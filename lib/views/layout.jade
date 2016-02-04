@@ -13,12 +13,16 @@
 	limitations under the License.
 	
 doctype html
+
 html
 	head
 		title= title
 		link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
 		link(rel='stylesheet', href='http://squidd.io/assets/bootstrap.css')
 		link(rel='stylesheet', href='/stylesheets/style.css')
+		script(src='/signalk/v1/stream/primus.js')
+		style. 
+			.small_label{text-align:center;font-size:smaller;margin-top:10px;}
 	body
 		#user_top
 			div(style="float:left")
@@ -41,7 +45,21 @@ html
 		div(style="min-height:640px")
 			block content
 		#user_bottom
-			if user
+			if user				
 				- expires = new Date(user.tokenExpires*1000);
-				div(style="text-align:center") #{"User: "+user.squiddio.email} - Authenticated with: sQuidd.io (#{"Token Expires on: "+expires})
-			div(style="text-align:center;font-size:smaller;margin-top:10px;") Server id: #{oauthSettings.clientID} -  Server name:   #{oauthSettings.serverName}
+				div(style="text-align:center") 
+					.small_label#postResponse
+					br
+					div #{"User: "+user.squiddio.email} - Authenticated with: sQuidd.io (token expires on: #{expires.toISOString().slice(0, 10) }) - Host Vessel (Self): #{user.squiddio.hostVessel}
+				if oauthSettings.updInterval				
+					script.					
+						var squiddioPosts = Primus.connect("http://#{oauthSettings.localHost}/signalk/v1/stream?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}", {reconnect: {maxDelay: 15000,minDelay: 500,retries: Infinity}});
+						var dataDiv = document.getElementById('postResponse');
+						squiddioPosts.on('data', function(data) { 
+							if (data.position_created) {
+								dataDiv.innerHTML = "Last event posted to sQuiddio: "+JSON.stringify(data.position_created) ;
+							} 
+						});
+			.small_label Server id: #{oauthSettings.clientID} -  Server name:   #{oauthSettings.serverName}
+			
+			

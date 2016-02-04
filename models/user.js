@@ -25,6 +25,7 @@ module.exports = mongoose.model('User',{
         firstName: String,
         lastName: String,
         email: String,
+        hostVessel: String,
         isFriend: Boolean,
         boat: {
             id: String,

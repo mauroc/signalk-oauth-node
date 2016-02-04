@@ -48,6 +48,7 @@ module.exports = function(passport) {
                             newUser.squiddio.email          = profile.email;
                             newUser.squiddio.firstName      = profile.firstName;
                             newUser.squiddio.lastName       = profile.lastName;
+                            newUser.squiddio.hostVessel     = profile.hostVessel;
                             newUser.squiddio.isFriend       = profile.isFriend;
                             newUser.squiddio.boat.id        = profile.boat.id;
                             newUser.squiddio.boat.name      = profile.boat.name;

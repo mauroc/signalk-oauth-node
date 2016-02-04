@@ -1,16 +1,16 @@
 {
 	"vessel": {
-		"name"	: "Volare",
-		"brand"	: "Friendship",
-		"type"	: "22",
-		"uuid"	: "urn:mrn:signalk:uuid:c0d79334-4e25-4245-8892-54e8ccc8021d",
+		"name"	: "Sloop sQuiddio",
+		"brand"	: "Jeanneau",
+		"type"	: "40",
+		"uuid"	: "urn:mrn:imo:mmsi:101010101",
 		
 		"dimensions": {
-			"length": 7,
-			"width": 2.5,
-			"mast": 10,
+			"length": 12,
+			"width": 3.5,
+			"mast": 14,
 			"depthTransducer": 0.5,
-			"keel": 1.5 
+			"keel": 2.2 
 		}
 	},
 
