@@ -1,3 +1,6 @@
+_IMPORTANT:_ there has been a change in the SignalK API url construct used by sQuidd.io. /api/v1 is no longer supported. Install the latest version of signalk-oauth-server as previous ones will not work!
+
+
 SignalK Server with client Oauth Authentication
 ================
 
@@ -9,7 +12,7 @@ Kicking the tires with a live SignalK Oauth server on sQuidd.io
 
 Before you try anything on your own SignalK Oauth server, you may want to peek at a demo implementation of the SignalK Oauth server running on sQuiddio. To do that:
 
-* Obtain a (free) sQuidd.io account at http://squidd.io/signup if you don't already have one. Create a boat (it will be needed to obtain an authentication Application ID and Secret for your SignalK Oauth server and to log in). Update your boat's current position (some of the sample API requests require a known vessel position).
+* Obtain a (free) sQuidd.io account at http://squidd.io/signup if you don't already have one. Create a boat (it will be needed to obtain an authentication Application ID and Secret for your SignalK Oauth server and to log in). [Update](http://squidd.io/positions/new) your boat's current position. Some of the sample API requests require a known vessel position).
 
 * Go to http://squidd.io::27065 and sign in
 
@@ -41,7 +44,7 @@ npm install
     "authServer":       "https://squidd.io",
     "tokenURL":         "https://squidd.io/oauth/token",
     "authorizationURL": "https://squidd.io/oauth/authorize",
-    "profileURL":       "https://squidd.io/signalk/api/v1/users/me",
+    "profileURL":       "https://squidd.io/signalk/v1/api/users/me",
     "callbackURL":      "http://localhost::27065/login/squiddio/callback",
     "sessionDuration":  86400
 }
