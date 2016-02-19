@@ -17,6 +17,8 @@
 
   "interfaces": {},
   
+  "ssl": true,
+  
   "pipedProviders": [{
     "id": "nmeaFromFile",
     "pipeElements": [

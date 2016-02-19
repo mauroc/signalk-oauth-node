@@ -26,49 +26,49 @@ block content
 	
 				tr
 					td
-						a(href='/signalk/v1/api/vessels/') http://#{host}:27065/signalk/v1/api/vessels/
+						a(href='/signalk/v1/api/vessels/') https://#{host}:27065/signalk/v1/api/vessels/
 					td Sample query
 				tr
 					td
-						a(href='/websocket-demo') http://#{host}:27065/websocket-demo
+						a(href='/websocket-demo') https://#{host}:27065/websocket-demo
 					td Json rendering of #{host} websocket 													
 									
 				tr
 					td(colspan=2 style="background-color:#cccccc") Examples of authenticated <a href="https://squidd.io/api_docs" target="_blank">API requests</a> to <b>sQuiddio</b>					
 				tr 					 
 					td 
-						a(href='/api_example_1') http://squidd.io/signalk/v1/api/vessels/
+						a(href='/api_example_1') https://squidd.io/signalk/v1/api/vessels/
 					td AIS sailing & pleasure crafts (AIS cat. 36 and 37. Limit 1000)
 				tr
 					td
-						a(href='/api_example_2') http://squidd.io/signalk/v1/api/vessels/self
+						a(href='/api_example_2') https://squidd.io/signalk/v1/api/vessels/self
 					td Self vessel data						
 				tr 					 
 					td 
-						a(href='/api_example_3') http://squidd.io/signalk/v1/api/vessels/imo:mmsi:215*
+						a(href='/api_example_3') https://squidd.io/signalk/v1/api/vessels/imo:mmsi:215*
 					td AIS sailing & pleasure crafts registered in Malta (limit 1000)				
 				tr 					 
 					td 
-						a(href='api_example_4') http://squidd.io/signalk/v1/api/vessels/self/navigation?friends=true
+						a(href='api_example_4') https://squidd.io/signalk/v1/api/vessels/self/navigation?friends=true
 					td	Latest navigation data of vessels in vessel Self follow list		
 				tr
 					td 
-						a(href='/api_example_5') http://squidd.io/signalk/v1/api/vessels/self/navigation?within_range=20
+						a(href='/api_example_5') https://squidd.io/signalk/v1/api/vessels/self/navigation?within_range=20
 					td	Vessels within 20 km of Self vessel 										
 				tr
 					td
-						a(href='/api_example_6') http://squidd.io/signalk/v1/api/resources/waypoints/country/US?region_code=CA
+						a(href='/api_example_6') https://squidd.io/signalk/v1/api/resources/waypoints/country/US?region_code=CA
 					td	Destinations in California				
 				tr
 					td
-						a(href='/api_example_7') http://squidd.io/signalk/v1/api/resources/waypoints/vessels/self?within_range=20
+						a(href='/api_example_7') https://squidd.io/signalk/v1/api/resources/waypoints/vessels/self?within_range=20
 					td	Destinations within 20 km of Self vessel	
 				tr
 					td
-						a(href='/api_example_8', onclick="return confirm('This will post an actual position report to your sQuiddio account. Continue?')" ) http://squidd.io/signalk/v1/api/vessels/navigation/position
+						a(href='/api_example_8', onclick="return confirm('This will post an actual position report to your sQuiddio account. Continue?')" ) https://squidd.io/signalk/v1/api/vessels/navigation/position
 					td	POST navigation info to sQuidd.io									
 				tr
 					td
-						a(href="/websocket-demo?wsserver=ws.squidd.io:27065&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") http://ws.squidd.io:3000/websocket-demo?wssever=squidd.io:3000&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
+						a(href="/websocket-demo?wsserver=ws.squidd.io:27065&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}") https://ws.squidd.io:27065/websocket-demo?wssever=squidd.io:27065&id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token.substring(0,8)+"...."}
 					td Json rendering of demo server websocket (real time vessel position reports)	
 									
