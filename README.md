@@ -5,16 +5,16 @@ SignalK Server with client Oauth Authentication
 ================
 
 An experimental implementation of a [Signal K](http://signalk.org) server using OAuth2 Authentication through sQuidd.io.
-It allows you to control access to your Signalk server without the need to manage user credentials, passwords, certificates etc. locally. It also provides the server with access to a number of sQuidd.io [authenticated APIs](http://squidd.io/api_docs) for the sharing and retrieval of vessel GPS position, NMEA status updates and general nautical information (see below).
+It allows you to control access to your Signalk server without the need to manage user credentials, passwords, certificates etc. locally. It also provides the server with access to a number of sQuidd.io [authenticated APIs](https://squidd.io/api_docs) for the sharing and retrieval of vessel GPS position, NMEA status updates and general nautical information (see below).
 
 Kicking the tires with a live SignalK Oauth server on sQuidd.io
 ------------------
 
 Before you try anything on your own SignalK Oauth server, you may want to peek at a demo implementation of the SignalK Oauth server running on sQuiddio. To do that:
 
-* Obtain a (free) sQuidd.io account at http://squidd.io/signup if you don't already have one. Create a boat (it will be needed to obtain an authentication Application ID and Secret for your SignalK Oauth server and to log in). [Update](http://squidd.io/positions/new) your boat's current position. Some of the sample API requests require a known vessel position).
+* Obtain a (free) sQuidd.io account at https://squidd.io/signup if you don't already have one. Create a boat (it will be needed to obtain an authentication Application ID and Secret for your SignalK Oauth server and to log in). [Update](https://squidd.io/positions/new) your boat's current position. Some of the sample API requests require a known vessel position).
 
-* Go to http://squidd.io::27065 and sign in
+* Go to https://squidd.io::27065 and sign in
 
 Select one of the few sample queries in the home page or view the live streaming page for real-time log updates. (Note that the demo server is located on a fictitious boat - Sloop sQuiddio - so "self" is not your boat in this case. You are simply asked to authorize the demo server to use your sQuiddio account to log in)
                                                                                                                                                                        .
@@ -23,7 +23,7 @@ Select one of the few sample queries in the home page or view the live streaming
 
 #### Prerequisites:
 * MongoDB previously installed on the server (used to store credentials). Refer to the installation instructions for your OS. Here's what I used on [Ubuntu 14.04](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-14-04). Alternatively, you can use a cloud-based version of MongoDB (e.g. Mongolab).
-* A sQuiddio account with at least one boat defined. Create at least one manual [position report](http://squidd.io/positions/new) and, if you feel like it, create a follow list. Some of the sample API calls in the home menu require a known position and a follow list.
+* A sQuiddio account with at least one boat defined. Create at least one manual [position report](https://squidd.io/positions/new) and, if you feel like it, create a follow list. Some of the sample API calls in the home menu require a known position and a follow list.
 * Node and npm installed. See [instructions](https://github.com/signalk/signalk-server-node) directly at the official SignalK repo.
 
 * Get the repo with `git clone https://github.com/mauroc/signalk-oauth-node.git`
@@ -40,12 +40,13 @@ npm install
     "clientSecret":   "<your sQuiddio secret>",
     "serverName":     "Authenticated SignalK Server on <your boat name>",
     "localStorage":   "mongodb://localhost/test",
+    "ssl":            true,
 
     "authServer":       "https://squidd.io",
     "tokenURL":         "https://squidd.io/oauth/token",
     "authorizationURL": "https://squidd.io/oauth/authorize",
     "profileURL":       "https://squidd.io/signalk/v1/api/users/me",
-    "callbackURL":      "http://localhost::27065/login/squiddio/callback",
+    "callbackURL":      "https://localhost::27065/login/squiddio/callback",
     "sessionDuration":  86400
 }
 ````
@@ -74,7 +75,7 @@ bin/nmea-from-file
 ```
 
 #### Use
-Point your browser to http://localhost::27065 (or whatever the hostname/port of your sever) and try the various requests on the home page with and without logging in. You will also be provided with a command to try an authenticated websocket request in terminal, using the <em>wscat</em> command.  The first time you log in, you will be redirected to a sQuiddio page asking your permission to share basic account information (first any last name, user id, email address) with the Signalk server.
+Point your browser to https://localhost::27065 (or whatever the hostname/port of your sever) and try the various requests on the home page with and without logging in. You will also be provided with a command to try an authenticated websocket request in terminal, using the <em>wscat</em> command.  The first time you log in, you will be redirected to a sQuiddio page asking your permission to share basic account information (first any last name, user id, email address) with the Signalk server.
 
 How it works
 ----
