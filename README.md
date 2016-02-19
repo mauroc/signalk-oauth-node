@@ -58,7 +58,7 @@ Note:
 * remember to add settings/oauth-settings.json to your .gitinore file to avoid publishing your keys to the an online repo.
 
 
-* Add the following setting to the SignalK settings files you will be using (for instance, nmea-from-file.json or myboat-tcp-settings.json ) as a first-level JSON key/value pair (for instance, right before your "pipedProviders" key/value pair):
+Add the following setting to the SignalK settings files you will be using (for instance, nmea-from-file.json or myboat-tcp-settings.json ) as a first-level JSON key/value pair (for instance, right before your "pipedProviders" key/value pair):
 ````
 "ssl": true
 ````
