@@ -10,3 +10,6 @@ nohup.out
 /settings/*.sh
 npm-debug.log
 *.sh
+settings/ssl-key.pem
+settings/ssl-cert.pem
+

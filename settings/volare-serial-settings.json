@@ -3,34 +3,39 @@
 		"name"	: "Volare",
 		"brand"	: "Friendship",
 		"type"	: "22",
-		"uuid"	: "urn:mrn:signalk:uuid:c0d79334-4e25-4245-8892-54e8ccc8021d",
-
+		"uuid"	: "10101010",
+		
 		"dimensions": {
 			"length": 7,
 			"width": 2.5,
 			"mast": 10,
 			"depthTransducer": 0.5,
-			"keel": 1.5
+			"keel": 1.5 
 		}
 	},
 
-  "mdns": false,
-
-	"interfaces": {
-    "bower": true,
-    "rest": true,
-    "ws": true
-  },
-
+	"interfaces": {},
+  
   "pipedProviders": [{
-    "id": "gpsdProvider",
+    "id": "nmeaFromFile",
     "pipeElements": [
-       {
-         "type": "providers/gpsd",
+       { 
+         "type": "providers/serialport",
          "options": {
-           "hostname": "127.0.0.1",
-           "port": 2947
-         }
+           "device": "/dev/ttyUSB0",
+           "baudrate": 4800
+         },
+         "optionMappings": [
+           {
+             "fromAppProperty": "argv.nmeadevice",
+             "toOption": "device"
+           },
+
+           {
+             "fromAppProperty": "argv.nmeabaudrate",
+             "toOption": "baudrate"
+           }
+         ]
        },
        {
           "type": "providers/nmea0183-signalk",
@@ -44,7 +49,7 @@
              "toOption": "selfType"
             }
           ]
-       }
+       }               
     ]
   }]
 }
