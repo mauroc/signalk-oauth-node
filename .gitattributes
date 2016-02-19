@@ -1,1 +1,2 @@
 lib/interfaces/ws.js merge=ours
+package.json merge=ours

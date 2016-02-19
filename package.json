@@ -83,7 +83,8 @@
     "winston": "^1.0.0",
     "ws": "^0.4.32" ,
     "request": "*" ,
-    "is-online": "*"
+    "is-online": "*",
+    "mysql": "^2.5.4"
   },
   "devDependencies": {
     "chai": "^3.2.0",
