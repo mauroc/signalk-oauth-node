@@ -40,7 +40,6 @@ npm install
     "clientSecret":   "<your sQuiddio secret>",
     "serverName":     "Authenticated SignalK Server on <your boat name>",
     "localStorage":   "mongodb://localhost/test",
-    "ssl":            true,
 
     "authServer":       "https://squidd.io",
     "tokenURL":         "https://squidd.io/oauth/token",
@@ -57,6 +56,14 @@ Note:
 * _callbackURL_: The value above works in most cases. If not, replace localhost::27065 with whatever host name and port you use for your authenticated SignalK. For instance, if you run SignalK Oauth on a headless server on your boat's LAN, you can enter the LAN address followed by port number, e.g. 192.168.1.55:3000. In this case you also need to update the default callback url in your boat profile, APIs tab.
 * _sessionDuration_: The expiration time in seconds of the session cookie.
 * remember to add settings/oauth-settings.json to your .gitinore file to avoid publishing your keys to the an online repo.
+
+
+* Add the following setting to the SignalK settings files you will be using (for instance, nmea-from-file.json or myboat-tcp-settings.json ) as a first-level JSON key/value pair (for instance, right before your "pipedProviders" key/value pair):
+````
+"ssl": true
+````
+This tells SignalK to accept *only https requests*, which is a good idea since the server will exchange private information, such as tokens and API keys, with the authentication server.
+
 
 #### Optional Settings
 * By default _anyone with a sQuiddio account can log into the server_. Add the following option to your settings file to restrict access to only members of your sQuiddio's [follow list](http://squidd.io/faq#follow_list):

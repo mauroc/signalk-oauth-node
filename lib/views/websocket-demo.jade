@@ -13,8 +13,8 @@
 	limitations under the License.
 	
 head
-	link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-	link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
+	link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+	link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css')
 	link(rel='stylesheet', href='/stylesheets/style.css')
 	meta(charset='utf-8')
 	meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -42,7 +42,7 @@ block content
 	pre
 		div#data(style="min-height:700px;")
 script.
-	var signalKStream = Primus.connect("http://#{wsServer}/signalk/v1/stream?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}", {
+	var signalKStream = Primus.connect("https://#{wsServer}/signalk/v1/stream?stream=delta&user_id=#{user && user.squiddio.id}&token=#{user && user.squiddio.token}", {
 		reconnect: {
 			maxDelay: 15000,
 			minDelay: 500,
