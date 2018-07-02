@@ -31,7 +31,8 @@ Select one of the few sample queries in the home page or view the live streaming
 * Go to the directory where you put the downloaded code and install dependencies with
 ````
 npm install
-```
+````
+
 #### Basic Settings
 * Configure your server by creating the settings/oauth-settings.json file like so:
 ````
@@ -44,7 +45,7 @@ npm install
     "authServer":       "https://squidd.io",
     "tokenURL":         "https://squidd.io/oauth/token",
     "authorizationURL": "https://squidd.io/oauth/authorize",
-    "profileURL":       "https://squidd.io/signalk/v1/api/users/me",
+    "profileURL":       "https://squidd.io/apps/v1/api/users/me",
     "callbackURL":      "https://localhost::27065/login/squiddio/callback",
     "sessionDuration":  86400
 }
@@ -77,9 +78,9 @@ This tells SignalK to accept *only https requests*, which is a good idea since t
  where 120 is the number of seconds between updates (minimum is 10). Obviously, there must be an active Internet connection available to the server at the time of the post (or the update will be skipped - no store-and-forward in the current version). Position updates are reflected in your and sQuiddio dashboard and to users in your Follow List, [iFrame-enabled](http://blog.squidd.io/2015/07/sharing-your-positions-map-on-your-blog.html) blogs and web sites and users of the [OpenCPN plugin](http://squidd.io/squiddio_pi).
 
 #### Start the server:
-```
+````
 bin/nmea-from-file
-```
+````
 
 #### Use
 Point your browser to https://localhost::27065 (or whatever the hostname/port of your sever) and try the various requests on the home page with and without logging in. You will also be provided with a command to try an authenticated websocket request in terminal, using the <em>wscat</em> command.  The first time you log in, you will be redirected to a sQuiddio page asking your permission to share basic account information (first any last name, user id, email address) with the Signalk server.
